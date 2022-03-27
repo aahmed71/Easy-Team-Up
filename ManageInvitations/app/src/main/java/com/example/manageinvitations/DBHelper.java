@@ -11,25 +11,25 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Invitations(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT)");
-        DB.execSQL("insert into Invitations(title) VALUES ('study'), ('hang out'), ('party')");
+        DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, userId INT)");
+        DB.execSQL("insert into Invitations (title, userId) VALUES ('study', 1), ('hang out', 1), ('party', 2)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
         DB.execSQL("drop Table if exists Invitations");
     }
-    public Boolean insertInvitation(String title)
-    {
-        SQLiteDatabase DB = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);
-        long result=DB.insert("Invitations", null, contentValues);
-        if(result==-1){
-            return false;
-        }else{
-            return true;
-        }
-    }
+//    public Boolean insertInvitation(String title)
+//    {
+//        SQLiteDatabase DB = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put("title", title);
+//        long result=DB.insert("Invitations", null, contentValues);
+//        if(result==-1){
+//            return false;
+//        }else{
+//            return true;
+//        }
+//    }
 //    public Boolean updateuserdata(String name, String contact, String dob)
 //    {
 //        SQLiteDatabase DB = this.getWritableDatabase();
@@ -48,10 +48,10 @@ public class DBHelper extends SQLiteOpenHelper {
 //            return false;
 //        }
 //    }
-    public Boolean deleteInvitation (Integer id)
+    public Boolean deleteInvitation (Integer eventId)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Invitations where id = ?", null);
+        Cursor cursor = DB.rawQuery("Select * from Invitations", null);
         if (cursor.getCount() > 0) {
             long result = DB.delete("Invitations", "id=?", null);
             if (result == -1) {
@@ -64,10 +64,11 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getdata()
+    public Cursor getData(Integer userId)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Invitations", null);
+//        String uId = userId.toString();
+        Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
     }
 }

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity{
         DB = new DBHelper(this);
         List<String> items = new LinkedList<>();
         //want grab from database here
-        Cursor res = DB.getdata();
+        Cursor res = DB.getData(1);
         if(res.getCount()==0){
             Toast.makeText(MainActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
             return;
