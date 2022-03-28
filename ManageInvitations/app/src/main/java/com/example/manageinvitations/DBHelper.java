@@ -12,9 +12,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table Events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, userId INT, place TEXT)");
-        DB.execSQL("insert into Events (title, userId, place) VALUES ('study', 3, 1), ('party', 1, 1), ('hang out', 2, 1)");
+        DB.execSQL("insert into Events (title, userId, place) VALUES ('study', 3, 'house'), ('party', 1, 'beach'), ('hang out', 2, 'library')");
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, eventId INT, userId INT)");
-        DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 3, 1), ('party', 1, 1), ('hang out', 2, 1)");
+        DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 0, 1), ('party', 1, 1), ('hang out', 2, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
     }
     @Override
@@ -23,36 +23,6 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Events");
         DB.execSQL("drop Table if exists RSVPs");
     }
-//    public Boolean insertInvitation(String title)
-//    {
-//        SQLiteDatabase DB = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("title", title);
-//        long result=DB.insert("Invitations", null, contentValues);
-//        if(result==-1){
-//            return false;
-//        }else{
-//            return true;
-//        }
-//    }
-//    public Boolean updateuserdata(String name, String contact, String dob)
-//    {
-//        SQLiteDatabase DB = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("contact", contact);
-//        contentValues.put("dob", dob);
-//        Cursor cursor = DB.rawQuery("Select * from Userdetails where name = ?", new String[]{name});
-//        if (cursor.getCount() > 0) {
-//            long result = DB.update("Userdetails", contentValues, "name=?", new String[]{name});
-//            if (result == -1) {
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        } else {
-//            return false;
-//        }
-//    }
     public Boolean acceptInvitation (Invite invite)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -121,7 +91,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getData(Integer userId)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-//        String uId = userId.toString();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
     }

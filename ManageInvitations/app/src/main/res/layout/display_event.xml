@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp">
     <TextView
         android:id="@+id/eventTitle"
         android:layout_width="match_parent"
@@ -10,22 +12,52 @@
         android:text="An event"
         android:textSize="32sp"
         android:layout_marginLeft="7sp" />
-
-    <TextView
-        android:id="@+id/host"
+    <LinearLayout
+        android:id="@+id/hostWrapper"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/eventTitle">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hosted By: "
+            android:textSize="20sp"
+            />
+        <TextView
+            android:id="@+id/host"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="Sample Host"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/locationWrapper"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/hostWrapper">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: "
+            android:textSize="20sp"
+            android:layout_below="@+id/hostWrapper"/>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="Sample Location"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/goBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hosted By: "
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="70dp" />
+        android:layout_below="@+id/locationWrapper"
+        android:layout_marginTop="73dp"
+        android:text="Back" />
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location: "
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="100dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -36,13 +36,7 @@ public class InvitationActivity extends AppCompatActivity{
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DemoAdapter adapter = new DemoAdapter(invites, DB);
+        DemoAdapter adapter = new DemoAdapter(invites, DB, this);
         recyclerView.setAdapter(adapter);
-
-//        findViewById(R.id.add).setOnClickListener(view ->{
-//            items.add(data[counter%3]);
-//            counter++;
-//            adapter.notifyItemInserted(items.size()-1);
-//        });
     }
 }
