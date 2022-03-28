@@ -1,4 +1,4 @@
-package com.example.manageinvitations;
+package com.example.easy_team_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +19,7 @@ public class InvitationActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.view_invitations);
 
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();

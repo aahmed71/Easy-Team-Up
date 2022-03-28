@@ -1,4 +1,4 @@
-package com.example.manageinvitations;
+package com.example.easy_team_up;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
