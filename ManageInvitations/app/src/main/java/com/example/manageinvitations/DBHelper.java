@@ -88,7 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getData(Integer userId)
+    public Cursor getInvitations(Integer userId)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
