@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBHelper extends SQLiteOpenHelper {
+import java.io.Serializable;
+
+public class DBHelper extends SQLiteOpenHelper implements Serializable {
     public DBHelper(Context context) {
         super(context, "Invitations.db", null, 1);
     }
@@ -14,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table Events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, userId INT, place TEXT)");
         DB.execSQL("insert into Events (title, userId, place) VALUES ('study', 3, 'house'), ('party', 1, 'beach'), ('hang out', 2, 'library')");
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, eventId INT, userId INT)");
-        DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 0, 1), ('party', 1, 1), ('hang out', 2, 1)");
+        DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 1, 1), ('party', 2, 1), ('hang out', 3, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
     }
     @Override
