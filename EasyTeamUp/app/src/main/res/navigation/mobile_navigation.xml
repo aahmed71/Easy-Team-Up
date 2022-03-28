@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.easy_team_up.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.easy_team_up.ListFragment"
+        android:label="@string/title_list"
+        tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -1,10 +1,19 @@
 package com.example.easy_team_up;
 
+import static com.example.easy_team_up.DBHelper.getPublicEvents;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +26,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MapsFragment extends Fragment {
-    ArrayList<Event> events;
-    HashMap<Marker, Event> eventMap;
+    private ArrayList<Event> events;
+    private HashMap<Marker, Event> eventMap;
+    private Geocoder geocoder;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -37,9 +48,43 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            events = getPublicEvents();
+            eventMap = new HashMap<Marker, Event>();
+            geocoder = new Geocoder(getContext());
+            // Iterate through events and place marker
+            for(Event event : events){
+                ArrayList<Address> addresses = null;
+                try {
+                    addresses = (ArrayList<Address>) geocoder.getFromLocationName(event.getAddress(), 50);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                double longitude = addresses.get(0).getLongitude();
+                double latitude = addresses.get(0).getLatitude();
+                LatLng coords = new LatLng(latitude, longitude);
+                MarkerOptions mo = new MarkerOptions().position(coords);
+                Marker m = googleMap.addMarker(mo);
+                eventMap.put(m, event);
+            }
+
+            googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(34.018360, -118.286331),14.0f) );
+            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    // Open up event details
+                    Event event = eventMap.get(marker);
+                    Intent i = new Intent(getActivity(), EventActivity.class);
+                    i.putExtra("name", event.getName());
+                    i.putExtra("desc", event.getDesc());
+                    i.putExtra("address", event.getAddress());
+                    i.putExtra("time", event.getTime().toString());
+                    startActivity(i);
+                    return true;
+
+                }
+            });
+
         }
     };
 

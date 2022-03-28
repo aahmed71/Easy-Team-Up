@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Aaron Ahmed/Documents/Easy-Team-Up/EasyTeamUp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.174" />
+        <entry key="..\:/Users/Aaron Ahmed/Documents/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_list.xml" value="0.18614130434782608" />
+        <entry key="..\:/Users/Aaron Ahmed/Documents/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/Aaron Ahmed/Documents/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/fragment_dashboard.xml" value="0.1707193515704154" />
+        <entry key="..\:/Users/Aaron Ahmed/Documents/Easy-Team-Up/EasyTeamUp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/Aaron/Downloads/EasyTeamUp2/app/src/main/res/layout/acitivity_list.xml" value="0.1" />
         <entry key="..\:/Users/Aaron/Downloads/EasyTeamUp2/app/src/main/res/layout/activity_event.xml" value="0.1" />
         <entry key="..\:/Users/Aaron/Downloads/EasyTeamUp2/app/src/main/res/layout/activity_list.xml" value="0.22826086956521738" />
