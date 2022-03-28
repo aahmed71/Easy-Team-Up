@@ -24,12 +24,13 @@ public class InvitationActivity extends AppCompatActivity{
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();
         //want grab from database here: need to pass in the userid
+
+        //try id that doesnt exist
         Cursor res = DB.getInvitations(1);
-        if(res.getCount()==0){
-            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        System.out.println("hello");
+//        if(res.getCount()==0){
+//            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         while(res.moveToNext()){
             //invite user event title
             Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
@@ -51,10 +52,39 @@ public class InvitationActivity extends AppCompatActivity{
                 if(title.getText() == "My Invitations") {
                     title.setText("My RSVPs");
                     changeView.setText("View Invitations");
+                    //get updated rsvps
+                    List<Invite> rsvps = new LinkedList<>();
+                    Cursor rsvpRes = DB.getRSVPs(1);
+                    while(rsvpRes.moveToNext()){
+                        //id event user
+                        Invite rsvp = new Invite(rsvpRes.getInt(0), rsvpRes.getInt(2), rsvpRes.getInt(1),
+                                "empty");
+                        rsvps.add(rsvp);
+                    }
+
+                    RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
+                    DemoAdapter adapter = new DemoAdapter(rsvps, DB, InvitationActivity.this);
+                    recyclerView.setAdapter(adapter);
                 }
                 else{
                     title.setText("My Invitations");
                     changeView.setText("View RSVPs");
+
+                    List<Invite> invites = new LinkedList<>();
+                    //get updated invitations
+                    Cursor res = DB.getInvitations(1);
+                    while(res.moveToNext()){
+                        //invite user event title
+                        Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
+                                res.getString(1));
+                        invites.add(invite);
+                    }
+
+                    RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
+                    DemoAdapter adapter = new DemoAdapter(invites, DB, InvitationActivity.this);
+                    recyclerView.setAdapter(adapter);
                 }
             }
         });

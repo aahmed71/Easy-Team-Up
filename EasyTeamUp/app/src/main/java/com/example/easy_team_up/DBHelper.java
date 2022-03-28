@@ -35,7 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("userId", invite.userId);
             contentValues.put("eventId", invite.eventId);
             long addResult=DB.insert("RSVPs", null, contentValues);
-            //&& addResult != -1
             if (deleteResult != -1 && addResult != -1) {
                 System.out.print("delete success");
                 return true;
@@ -92,6 +91,13 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+
+    public Cursor getRSVPs(Integer userId)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from RSVPs WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
     }
 
