@@ -5,9 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.io.Serializable;
-
-public class DBHelper extends SQLiteOpenHelper implements Serializable {
+public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "Invitations.db", null, 1);
     }
@@ -90,7 +88,7 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
-    public Cursor getData(Integer userId)
+    public Cursor getInvitations(Integer userId)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
