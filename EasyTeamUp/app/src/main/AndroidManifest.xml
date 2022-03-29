@@ -38,6 +38,15 @@
             android:name=".EditEvent"
             android:exported="false" />
         <activity
+            android:name=".CreateEvent"
+            android:exported="false" />
+        <activity
+            android:name=".CreateNewUser"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewMyEvents"
             android:exported="false" />
         <activity

@@ -12,6 +12,8 @@ public class UserPortal extends AppCompatActivity {
     Button manageEvents;
     Button viewMap;
     Button viewEvent;
+    Button createEvent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,13 @@ public class UserPortal extends AppCompatActivity {
         rsvpInvites.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 goToInvitations();
+            }
+        });
+
+        createEvent = findViewById((R.id.createEventButton));
+        createEvent.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                goToCreateEvent();
             }
         });
 
@@ -46,6 +55,11 @@ public class UserPortal extends AppCompatActivity {
     }
     public void goToInvitations(){
         Intent intent = new Intent(this, InvitationActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToCreateEvent(){
+        Intent intent = new Intent(this, CreateEvent.class);
         startActivity(intent);
     }
     public void goToManageEvents(){

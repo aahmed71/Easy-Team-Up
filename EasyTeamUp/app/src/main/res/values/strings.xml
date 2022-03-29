@@ -1,8 +1,51 @@
 <resources>
-    <string name="app_name">Manage Invitations</string>
+    <string name="app_name">Easy Team Up</string>
     <string name="title_activity_sample">sample</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <string-array name="times">
+        <item>0700</item>
+        <item>0800</item>
+        <item>0900</item>
+        <item>1000</item>
+        <item>1100</item>
+    </string-array>
+
+    <string-array name="eventType">
+        <item>Social</item>
+        <item>Study Group</item>
+        <item>Sports</item>
+        <item>etc</item>
+        <item>etc</item>
+
+    </string-array>
+
+    <string-array name="months">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+    </string-array>
+
+    <string-array name="dates">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+    </string-array>
+
+    <string-array name="years">
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+    </string-array>
+
+        <color name="gray">#808080</color>
 </resources>
