@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10sp"
+    android:layout_marginLeft="10sp"
+    tools:context=".UserPortal">
+    <TextView
+        android:id="@+id/portal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:text="User Portal"/>
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/portal"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="150sp"
+            android:layout_marginBottom="20sp"
+            android:text="Log Out" />
+        <Button
+            android:id="@+id/viewEventsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="View Events"
+            android:layout_marginBottom="20sp"
+            android:layout_below="@+id/logOutButton"/>
+
+        <Button
+            android:id="@+id/rsvpInviteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewEventsButton"
+            android:layout_centerInParent="true"
+            android:text="View RSVPs and Invites" />
+</RelativeLayout>
