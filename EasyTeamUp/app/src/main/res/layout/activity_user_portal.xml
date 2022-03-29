@@ -22,22 +22,33 @@
             android:layout_marginTop="150sp"
             android:layout_marginBottom="20sp"
             android:text="Log Out" />
-        <Button
-            android:id="@+id/viewEventsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Browse Events"
-            android:layout_marginBottom="20sp"
-            android:layout_below="@+id/logOutButton"/>
-        <Button
-            android:id="@+id/manageEvents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Manage My Events"
-            android:layout_marginBottom="20sp"
-            android:layout_below="@+id/viewEventsButton"/>
+
+    <Button
+        android:id="@+id/viewEventsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logOutButton"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20sp"
+        android:text="Browse Events" />
+
+    <Button
+        android:id="@+id/viewMapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewEventsButton"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20sp"
+        android:text="View Map" />
+
+    <Button
+        android:id="@+id/manageEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewMapButton"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20sp"
+        android:text="Manage My Events" />
 
         <Button
             android:id="@+id/rsvpInviteButton"

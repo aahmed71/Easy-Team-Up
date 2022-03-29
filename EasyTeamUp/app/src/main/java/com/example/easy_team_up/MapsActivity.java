@@ -25,7 +25,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    HashMap<Marker, Event> eventMap = new HashMap<Marker, Event>();
+    HashMap<Marker, Event2> eventMap = new HashMap<Marker, Event2>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +52,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        ArrayList<Event> events = new ArrayList<Event>();
-        events.add(new Event("Study", "Studying for midterms.",
+        ArrayList<Event2> events = new ArrayList<Event2>();
+        events.add(new Event2("Study", "Studying for midterms.",
                 "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43)));
-        events.add(new Event("Birthday", "Bob's birthday.",
+        events.add(new Event2("Birthday", "Bob's birthday.",
                 "3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50)));
 
         Geocoder geocoder = new Geocoder(this);
         // Iterate through events and place marker
-        for(Event event : events){
+        for(Event2 event : events){
             ArrayList<Address> addresses = null;
             try {
                 addresses = (ArrayList<Address>) geocoder.getFromLocationName(event.getAddress(), 50);
@@ -89,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void viewEvent(Marker m){
-        Event event = eventMap.get(m);
+        Event2 event = eventMap.get(m);
         Intent i = new Intent(this, EventActivity.class);
         i.putExtra("name", event.getName());
         i.putExtra("desc", event.getDesc());

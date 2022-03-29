@@ -3,13 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Aaron/Documents/EastTeamUp3/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_event.xml" value="0.1111111111111111" />
-        <entry key="..\:/Users/Aaron/Documents/EastTeamUp3/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_user_portal.xml" value="0.264" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_edit_event.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_sample.xml" value="0.234375" />
-        <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_user_portal.xml" value="0.1" />
+        <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_user_portal.xml" value="0.16" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/activity_view_my_events.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/display_event.xml" value="0.1403985507246377" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/fragment_dashboard.xml" value="0.2203125" />

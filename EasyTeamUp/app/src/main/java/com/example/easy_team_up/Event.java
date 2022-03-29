@@ -1,5 +1,4 @@
 package com.example.easy_team_up;
-
 public class Event {
     Integer eventId;
     Integer userId;
