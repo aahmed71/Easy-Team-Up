@@ -1,4 +1,4 @@
-package com.example.manageinvitations;
+package com.example.easy_team_up;
 
 import org.junit.Test;
 

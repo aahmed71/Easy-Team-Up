@@ -1,4 +1,4 @@
-package com.example.manageinvitations;
+package com.example.easy_team_up;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.manageinvitations", appContext.getPackageName());
+        assertEquals("com.example.easy_team_up", appContext.getPackageName());
     }
 }
