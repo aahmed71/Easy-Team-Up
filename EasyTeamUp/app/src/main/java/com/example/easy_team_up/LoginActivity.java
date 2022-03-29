@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
-    Button btnlogin;
+    Button btnlogin, btnNewUser;
     DBHelper DB;
 
     @Override
@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         btnlogin = (Button) findViewById(R.id.btnsignin1);
+        btnNewUser = (Button) findViewById(R.id.btnNewUser);
         DB = new DBHelper(this);
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean checkUserPass = DB.checkUserNamePassword(user, pass);
                     if (checkUserPass == true) {
                         Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        Intent intent  = new Intent(getApplicationContext(), CreateEvent.class);
+                        Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
                         intent.putExtra("user", user);
                         startActivity(intent);
                     }
@@ -49,6 +50,14 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
+            }
+        });
+
+        btnNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getApplicationContext(), CreateNewUser.class);
+                startActivity(intent);
             }
         });
     }

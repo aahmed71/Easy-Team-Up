@@ -25,7 +25,6 @@ public class CreateNewUser extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         repassword = (EditText) findViewById(R.id.repassword);
         signup = (Button) findViewById(R.id.btnsignup);
-        signin = (Button) findViewById(R.id.btnsignin);
         DB = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,7 @@ public class CreateNewUser extends AppCompatActivity {
                             Boolean insert = DB.insertNewUserData(user, pass);
                             if (insert == true) {
                                 Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent  = new Intent(getApplicationContext(), CreateEvent.class);
+                                Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
                                 intent.putExtra("user", user);
                                 startActivity(intent);
                             }
@@ -62,14 +61,6 @@ public class CreateNewUser extends AppCompatActivity {
                     }
                 }
 
-            }
-        });
-
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
             }
         });
     }
