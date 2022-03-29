@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Event Type"
+        android:hint="Event Type: "
         android:layout_centerInParent="true"
         android:layout_below="@id/eventName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/timeSpinner"
+        android:id="@+id/startTimeSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -120,24 +120,41 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time:"
+            android:text="Start Time:"
             android:textSize="18dp"
             android:layout_marginRight="20dp"/>
         <Spinner
-            android:id="@+id/time"
+            android:id="@+id/startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/endTimeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/startTimeSpinner">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Time:"
+            android:textSize="18dp"
+            android:layout_marginRight="20dp"/>
+        <Spinner
+            android:id="@+id/endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
-        android:layout_below="@id/timeSpinner"
+        android:layout_below="@id/endTimeSpinner"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="200dp"
         android:backgroundTint="#D500F9"
         android:onClick="submitbuttonHandler"
-        android:text="SUBMIT"
+        android:text="UPDATE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
