@@ -7,17 +7,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
-        super(context, "Invitations.db", null, 1);
+        super(context, "database", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, userId INT, place TEXT)");
-        DB.execSQL("insert into Events (title, userId, place) VALUES ('study', 3, 'house'), ('party', 1, 'beach'), ('hang out', 2, 'library')");
+//        DB.execSQL("create Table Events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, userId INT, place TEXT)");
+//        DB.execSQL("insert into Events (title, userId, place) VALUES ('study', 3, 'house'), ('party', 1, 'beach'), ('hang out', 2, 'library')");
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, eventId INT, userId INT)");
         DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 1, 1), ('party', 2, 1), ('hang out', 3, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
-        DB.execSQL("create Table Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT, email TEXT)");
-        DB.execSQL("insert into Users (name, email, password) VALUES ('Belle', 'belle@usc.edu', '123'), ('Bob', 'bob@usc.edu', '123'), ('Cora', 'cora@usc.edu', '123')");
+//        DB.execSQL("create Table Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT, email TEXT)");
+//        DB.execSQL("insert into Users (name, email, password) VALUES ('Belle', 'belle@usc.edu', '123'), ('Bob', 'bob@usc.edu', '123'), ('Cora', 'cora@usc.edu', '123')");
+        DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
+                "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
+                "privateOrPublic TEXT, location TEXT)");
+        DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
+        DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+        DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
@@ -100,6 +106,30 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
+    }
+    public Cursor getMyEvents(Integer userId){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Events WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+
+    public Boolean updateMyEvent(Integer eventId, String title)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", title);
+//        contentValues.put("dob", dob);
+        Cursor cursor = DB.rawQuery("Select * from Events where id = ?", new String[]{String.valueOf(eventId)});
+        if (cursor.getCount() > 0) {
+            long result = DB.update("Events", contentValues, "id=?", new String[]{String.valueOf(eventId)});
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     public Cursor getRSVPs(Integer userId)

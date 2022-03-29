@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".EditEvent"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMyEvents"
+            android:exported="false" />
+        <activity
             android:name=".UserPortal"
             android:exported="true">
             <intent-filter>
@@ -20,8 +26,7 @@
         </activity>
         <activity
             android:name=".InvitationActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ViewEvent"
             android:exported="true" />

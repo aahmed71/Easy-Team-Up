@@ -27,15 +27,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="View Events"
+            android:text="Browse Events"
             android:layout_marginBottom="20sp"
             android:layout_below="@+id/logOutButton"/>
+        <Button
+            android:id="@+id/manageEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Manage My Events"
+            android:layout_marginBottom="20sp"
+            android:layout_below="@+id/viewEventsButton"/>
 
         <Button
             android:id="@+id/rsvpInviteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEventsButton"
+            android:layout_below="@+id/manageEvents"
             android:layout_centerInParent="true"
             android:text="View RSVPs and Invites" />
 </RelativeLayout>

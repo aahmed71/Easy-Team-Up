@@ -32,7 +32,7 @@ public class RSVPAdapter extends RecyclerView.Adapter<RSVPvh>{
         int eventId = rsvps.get(position).eventId;
         Cursor res = DB.getEventById(eventId);
         res.moveToFirst();
-        holder.textView.setText(res.getString(1));
+        holder.textView.setText(res.getString(2));
     }
 
     @Override
