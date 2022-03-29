@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class ViewEvent extends AppCompatActivity {
     private Button button;
+    private String returnPage;
     DBHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class ViewEvent extends AppCompatActivity {
             System.out.println("event does not exist");
             return;
         }
+        returnPage = intent.getStringExtra("returnPage");
         System.out.println("Event id: " + eventId);
         DB = new DBHelper(this);
 
@@ -44,13 +46,20 @@ public class ViewEvent extends AppCompatActivity {
         button = findViewById(R.id.goBack);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                displayInvitations();
+                if(returnPage.equals("viewMyEvents")) {
+                    viewMyEvents();
+                }
+                else displayInvitations();
             }
         });
     }
 
     public void displayInvitations(){
         Intent intent = new Intent(this, InvitationActivity.class);
+        startActivity(intent);
+    }
+    public void viewMyEvents(){
+        Intent intent = new Intent(this, ViewMyEvents.class);
         startActivity(intent);
     }
 }

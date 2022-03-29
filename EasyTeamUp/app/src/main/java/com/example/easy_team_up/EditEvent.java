@@ -19,6 +19,7 @@ import java.util.List;
 
 public class EditEvent extends AppCompatActivity {
     DBHelper DB;
+    Integer eventId;
     String eventName;
     String eventType;
     String eventLocation;
@@ -35,7 +36,7 @@ public class EditEvent extends AppCompatActivity {
 
         //get intent
         Intent intent = getIntent();
-        Integer eventId = intent.getIntExtra("eventId", -1);
+        eventId = intent.getIntExtra("eventId", -1);
         if(eventId == -1){
             System.out.println("event does not exist");
             return;
@@ -211,7 +212,7 @@ public class EditEvent extends AppCompatActivity {
                 System.out.println(endTime);
                 DB.updateMyEvent(eventId, eventName, eventType, startTime,
                         endTime, month, date, year, eventLocation, privateOrPublic);
-
+                DB.close();
             }
         };
         Button submit = (Button) findViewById(R.id.submit);
