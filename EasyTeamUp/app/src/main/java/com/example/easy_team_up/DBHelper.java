@@ -166,11 +166,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Boolean updateMyEvent(Integer eventId, String title)
+    public Boolean updateMyEvent(Integer eventId, String eventName, String eventType, String startTime,
+                                 String endTime, String month, String date, String year, String location, String privateEvent)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);
+        contentValues.put("eventName", eventName);
+        contentValues.put("eventType", eventType);
+        contentValues.put("eventStartTime", startTime);
+        contentValues.put("eventEndTime", endTime);
+        contentValues.put("eventMonth", month);
+        contentValues.put("eventDate", date);
+        contentValues.put("eventYear", year);
+        contentValues.put("location", location);
+        contentValues.put("privateOrPublic", privateEvent);
 //        contentValues.put("dob", dob);
         Cursor cursor = DB.rawQuery("Select * from Events where id = ?", new String[]{String.valueOf(eventId)});
         if (cursor.getCount() > 0) {
