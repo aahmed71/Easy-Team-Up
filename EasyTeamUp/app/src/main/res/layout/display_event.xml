@@ -52,6 +52,58 @@
             android:textSize="20sp"
             />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/dateWrapper"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/locationWrapper">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="Sample Date"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/timeWrapper"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/dateWrapper">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: "
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="beginning"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:textSize="20sp"
+            android:layout_below="@+id/hostWrapper"/>
+        <TextView
+            android:id="@+id/endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:text="end"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
     <Button
         android:id="@+id/goBack"
         android:layout_width="wrap_content"

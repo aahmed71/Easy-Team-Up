@@ -28,10 +28,17 @@ public class ViewEvent extends AppCompatActivity {
         Cursor res = DB.getEventById(eventId);
         System.out.println("result size: " + res.getCount());
         res.moveToFirst();
-        String userId = String.valueOf(res.getInt(2));
+//        String userId = String.valueOf(res.getInt(2));
         String location = res.getString(3);
+        Cursor userRes = DB.getNameFromUserId(res.getInt(2));
+        userRes.moveToFirst();
+        //setting title
+        TextView titleView = findViewById(R.id.eventTitle);
+        titleView.setText(res.getString(1));
+        //setting host
         TextView hostView = findViewById(R.id.host);
-        hostView.setText(userId);
+        hostView.setText(userRes.getString(1));
+        //setting location
         TextView locationView = findViewById(R.id.location);
         locationView.setText(location);
         button = findViewById(R.id.goBack);

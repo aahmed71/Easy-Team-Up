@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/display_event.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/item.xml" value="0.20878623188405798" />
+        <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/rsvpitem.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/EasyTeamUp/app/src/main/res/layout/view_invitations.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/Easy-Team-Up/ManageInvitations/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/Users/Claudia/AndroidStudioProjects/ManageInvitations/app/src/main/res/layout/activity_main.xml" value="0.2" />

@@ -16,12 +16,15 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, eventId INT, userId INT)");
         DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 1, 1), ('party', 2, 1), ('hang out', 3, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
+        DB.execSQL("create Table Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT, email TEXT)");
+        DB.execSQL("insert into Users (name, email, password) VALUES ('Belle', 'belle@usc.edu', '123'), ('Bob', 'bob@usc.edu', '123'), ('Cora', 'cora@usc.edu', '123')");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
         DB.execSQL("drop Table if exists Invitations");
         DB.execSQL("drop Table if exists Events");
         DB.execSQL("drop Table if exists RSVPs");
+        DB.execSQL("drop Table if exists Users");
     }
     public Boolean acceptInvitation (Invite invite)
     {
@@ -85,6 +88,11 @@ public class DBHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+    public Cursor getNameFromUserId(Integer userId){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Users WHERE id = ?", new String[]{String.valueOf(userId)});
+        return cursor;
     }
 
     public Cursor getInvitations(Integer userId)

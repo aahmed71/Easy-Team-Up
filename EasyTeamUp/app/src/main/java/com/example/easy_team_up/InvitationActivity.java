@@ -64,7 +64,7 @@ public class InvitationActivity extends AppCompatActivity{
 
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
-                    DemoAdapter adapter = new DemoAdapter(rsvps, DB, InvitationActivity.this);
+                    RSVPAdapter adapter = new RSVPAdapter(rsvps, DB, InvitationActivity.this);
                     recyclerView.setAdapter(adapter);
                 }
                 else{
