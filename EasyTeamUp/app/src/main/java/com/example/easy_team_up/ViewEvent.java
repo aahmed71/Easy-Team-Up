@@ -28,7 +28,6 @@ public class ViewEvent extends AppCompatActivity {
         Cursor res = DB.getEventById(eventId);
         System.out.println("result size: " + res.getCount());
         res.moveToFirst();
-//        String userId = String.valueOf(res.getInt(2));
         String location = res.getString(3);
         Cursor userRes = DB.getNameFromUserId(res.getInt(2));
         userRes.moveToFirst();

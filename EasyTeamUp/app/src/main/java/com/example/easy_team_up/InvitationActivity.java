@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.LinkedList;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 public class InvitationActivity extends AppCompatActivity{
     DBHelper DB;
     Button switchView;
+    Button userPortal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,12 @@ public class InvitationActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DemoAdapter adapter = new DemoAdapter(invites, DB, this);
         recyclerView.setAdapter(adapter);
+        userPortal = (Button) findViewById(R.id.returnUser);
+        userPortal.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                goToPortal();
+            }
+        });
 
         switchView = (Button) findViewById(R.id.inviteRSVPView);
         switchView.setOnClickListener(new View.OnClickListener(){
@@ -88,5 +96,9 @@ public class InvitationActivity extends AppCompatActivity{
                 }
             }
         });
+    }
+    public void goToPortal(){
+        Intent intent = new Intent(this, UserPortal.class);
+        startActivity(intent);
     }
 }
