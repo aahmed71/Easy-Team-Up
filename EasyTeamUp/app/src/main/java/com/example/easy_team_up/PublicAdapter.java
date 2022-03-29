@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
+public class PublicAdapter extends RecyclerView.Adapter<PublicVH>{
     List<Event> items;
-    public DemoAdapter(List<Event> items){
+    public PublicAdapter(List<Event> items){
         this.items = items;
     }
     @NonNull
     @Override
-    public DemoVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PublicVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item, parent, false);
-        return new DemoVH(view).linkAdapter(this);
+        return new PublicVH(view).linkAdapter(this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DemoVH holder, int position) {
+    public void onBindViewHolder(@NonNull PublicVH holder, int position) {
         holder.textView.setText(items.get(position).getName());
     }
 
@@ -36,10 +36,10 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
     }
 }
 
-class DemoVH extends RecyclerView.ViewHolder{
+class PublicVH extends RecyclerView.ViewHolder{
     TextView textView;
-    private DemoAdapter adapter;
-    public DemoVH(@NonNull View itemView){
+    private PublicAdapter adapter;
+    public PublicVH(@NonNull View itemView){
         super(itemView);
         textView = itemView.findViewById(R.id.text);
         itemView.findViewById(R.id.view).setOnClickListener(view -> {
@@ -53,7 +53,7 @@ class DemoVH extends RecyclerView.ViewHolder{
             c.startActivity(i);
         });
     }
-    public DemoVH linkAdapter(DemoAdapter adapter){
+    public PublicVH linkAdapter(PublicAdapter adapter){
         this.adapter = adapter;
         return this;
     }

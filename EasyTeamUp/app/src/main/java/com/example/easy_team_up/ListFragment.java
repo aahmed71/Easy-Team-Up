@@ -32,7 +32,7 @@ public class ListFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        DemoAdapter adapter = new DemoAdapter(items);
+        PublicAdapter adapter = new PublicAdapter(items);
         recyclerView.setAdapter(adapter);
 
         return rootView;
