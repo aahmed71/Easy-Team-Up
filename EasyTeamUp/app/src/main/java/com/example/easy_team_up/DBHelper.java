@@ -9,10 +9,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "Invitations.db", null, 1);
     }
-    public DBLogin(Context context) {
-        super(context, "Login.db", null, 1);
-    }
-    public DBEvent(Context context) { super(context, "Event.db", null, 1);
 
     @Override
     public void onCreate(SQLiteDatabase DB) {

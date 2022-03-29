@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class UserPortal extends AppCompatActivity {
     Button rsvpInvites;
-    Button viewEvents;
+    Button viewMap;
+    Button viewEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +22,15 @@ public class UserPortal extends AppCompatActivity {
             }
         });
 
-        viewEvents = findViewById(R.id.viewEventsButton);
-        viewEvents.setOnClickListener(new View.OnClickListener(){
+        viewMap = findViewById(R.id.viewMapButton);
+        viewMap.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                goToMaps();
+            }
+        });
+
+        viewEvent = findViewById(R.id.viewEventsButton);
+        viewEvent.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 goToEvents();
             }
@@ -34,8 +42,15 @@ public class UserPortal extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToEvents(){
+    public void goToMaps(){
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
+
+    public void goToEvents(){
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+    }
+
+
 }
