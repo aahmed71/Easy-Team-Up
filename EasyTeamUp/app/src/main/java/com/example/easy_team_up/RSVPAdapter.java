@@ -14,10 +14,12 @@ public class RSVPAdapter extends RecyclerView.Adapter<RSVPvh>{
     List<Invite> rsvps;
     DBHelper DB;
     Context c;
-    public RSVPAdapter(List<Invite> rsvps, DBHelper DB, Context c){
+    Integer userId;
+    public RSVPAdapter(List<Invite> rsvps, DBHelper DB, Context c, Integer userId){
         this.rsvps = rsvps;
         this.DB = DB;
         this.c = c;
+        this.userId = userId;
     }
     @NonNull
     @Override
@@ -49,6 +51,7 @@ class RSVPvh extends RecyclerView.ViewHolder{
         System.out.println(adapter.rsvps.get(getAdapterPosition()).eventId);
         intent.putExtra("eventId",
                 adapter.rsvps.get(getAdapterPosition()).eventId);
+        intent.putExtra("userId", adapter.userId);
         adapter.c.startActivity(intent);
     }
     public RSVPvh(@NonNull View itemView){

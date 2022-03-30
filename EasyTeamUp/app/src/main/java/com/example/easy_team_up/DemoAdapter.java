@@ -14,10 +14,12 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
     List<Invite> invites;
     DBHelper DB;
     Context c;
-    public DemoAdapter(List<Invite> invites, DBHelper DB, Context c){
+    Integer userId;
+    public DemoAdapter(List<Invite> invites, DBHelper DB, Context c, Integer userId){
         this.invites = invites;
         this.DB = DB;
         this.c = c;
+        this.userId = userId;
     }
     @NonNull
     @Override
@@ -46,6 +48,7 @@ class DemoVH extends RecyclerView.ViewHolder{
         System.out.println(adapter.invites.get(getAdapterPosition()).eventId);
         intent.putExtra("eventId",
                 adapter.invites.get(getAdapterPosition()).eventId);
+        intent.putExtra("userId", adapter.userId);
         adapter.c.startActivity(intent);
     }
     public DemoVH(@NonNull View itemView){

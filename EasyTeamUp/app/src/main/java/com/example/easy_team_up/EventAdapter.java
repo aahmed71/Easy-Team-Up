@@ -14,10 +14,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventVH>{
     List<Event> events;
     DBHelper DB;
     Context c;
-    public EventAdapter(List<Event> events, DBHelper DB, Context c){
+    Integer userId;
+    public EventAdapter(List<Event> events, DBHelper DB, Context c, Integer userId){
         this.events = events;
         this.DB = DB;
         this.c = c;
+        this.userId = userId;
     }
     @NonNull
     @Override
@@ -51,6 +53,7 @@ class EventVH extends RecyclerView.ViewHolder{
                 adapter.events.get(getAdapterPosition()).eventId);
         intent.putExtra("returnPage",
                 "viewMyEvents");
+        intent.putExtra("userId", adapter.userId);
         adapter.c.startActivity(intent);
     }
     public void editEvent(){

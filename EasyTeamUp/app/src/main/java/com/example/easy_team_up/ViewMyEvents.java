@@ -42,7 +42,7 @@ public class ViewMyEvents extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        EventAdapter adapter = new EventAdapter(events, DB, this);
+        EventAdapter adapter = new EventAdapter(events, DB, this, userId);
         recyclerView.setAdapter(adapter);
 
         back = (Button) findViewById(R.id.returnUser);

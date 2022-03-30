@@ -39,7 +39,7 @@ public class InvitationActivity extends AppCompatActivity{
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DemoAdapter adapter = new DemoAdapter(invites, DB, this);
+        DemoAdapter adapter = new DemoAdapter(invites, DB, this, userId);
         recyclerView.setAdapter(adapter);
         userPortal = (Button) findViewById(R.id.returnUser);
         userPortal.setOnClickListener(new View.OnClickListener(){
@@ -68,7 +68,7 @@ public class InvitationActivity extends AppCompatActivity{
 
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
-                    RSVPAdapter adapter = new RSVPAdapter(rsvps, DB, InvitationActivity.this);
+                    RSVPAdapter adapter = new RSVPAdapter(rsvps, DB, InvitationActivity.this, userId);
                     recyclerView.setAdapter(adapter);
                 }
                 else{
@@ -87,7 +87,7 @@ public class InvitationActivity extends AppCompatActivity{
 
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
-                    DemoAdapter adapter = new DemoAdapter(invites, DB, InvitationActivity.this);
+                    DemoAdapter adapter = new DemoAdapter(invites, DB, InvitationActivity.this, userId);
                     recyclerView.setAdapter(adapter);
                 }
             }
