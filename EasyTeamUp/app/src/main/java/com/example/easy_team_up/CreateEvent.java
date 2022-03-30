@@ -43,7 +43,9 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        currentUser = getIntent().getStringExtra("user");
+        currentUser = getIntent().getStringExtra("userName");
+        System.out.println("\n\n\n");
+        System.out.println(currentUser);
 
         // Event name text view
         EditText etEventName = (EditText)findViewById(R.id.editText);
@@ -62,20 +64,6 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         Spinner spinner8 = findViewById(R.id.spinner8);
         // spinner 9 = event year
         Spinner spinner9 = findViewById(R.id.spinner9);
-        // public
-
-
-        /*
-        // spinner 3 = sign up due month
-        Spinner spinner3 = findViewById(R.id.spinner3);
-        // spinner 4 = sign up due date
-        Spinner spinner4 = findViewById(R.id.spinner4);
-        // spinner 5 = sign up due year
-        Spinner spinner5 = findViewById(R.id.spinner5);
-        // spinner 6 = sign up due time
-        Spinner spinner6 = findViewById(R.id.spinner6);*/
-
-
         // Submit button
         Button buttonNext = findViewById(R.id.buttonNext);
 

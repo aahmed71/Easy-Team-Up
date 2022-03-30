@@ -2,7 +2,9 @@ package com.example.easy_team_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -141,10 +143,16 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         });
 
         buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 userSearch = etUsernameSearch.getText().toString();
                 if (DB1.checkUserName(userSearch)) {
+                    Cursor cursor = DB1.getIdfromUsername(currentUser);
+                    if (cursor.moveToFirst()) {
+                        Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
+                       // System.out.println(cursor.getString(cursor.getColumnIndex("userId")));
+                    }
 
                 }
                 else {
@@ -165,7 +173,6 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 break;
             case R.id.spinner4:
                 temp4 = parent.getItemAtPosition(position).toString();
-
                 break;
             case R.id.spinner5:
                 temp5 = parent.getItemAtPosition(position).toString();
