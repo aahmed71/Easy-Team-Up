@@ -36,7 +36,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/repassword"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="287dp"
         android:text="Register" />
+
+    <Button
+        android:id="@+id/btnLogin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/repassword"
+        android:layout_marginTop="362dp"
+        android:text="Return To Login" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/repassword"
+        android:hint = "Email"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextTextEmailAddress"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="numberDecimal" />
+
 
 </RelativeLayout>

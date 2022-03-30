@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".CreateEventPt2"
+            android:exported="false" />
+        <activity
             android:name=".ListActivity"
             android:exported="false" />
         <activity
@@ -55,11 +58,9 @@
         <activity
             android:name=".ViewMyEvents"
             android:exported="false" />
-
         <activity
             android:name=".UserPortal"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".InvitationActivity"
             android:exported="true" />

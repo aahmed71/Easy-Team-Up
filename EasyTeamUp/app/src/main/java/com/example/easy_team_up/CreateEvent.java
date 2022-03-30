@@ -11,31 +11,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class CreateEvent extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    /*
-        String eventType;
-        String eventName;
-        String startTime;
-        String endTime;
-        String month;
-        String date;
-        String year;
-        String eventDueTime; */
     String eventType;
     String eventName;
-    int startTime;
-    int endTime;
-    int eventDate;
+    String startTime;
+    String endTime;
+    String eventDate;
     String eventMonth;
-    int eventYear;
+    String eventYear;
     String signupDueMonth;
     int signupDueDate;
     int signupDueYear;
     int signupDueTime;
     String currentUser;
+    String eventDescription;
     String publicOrPrivate;
-    DBHelper DB1;
+
+    String temp;
+    String temp1;
+    String temp2;
+    String temp3;
+    String temp8;
+    String temp9;
+
+    // DB1 = new DBHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
 
         // Event name text view
         EditText etEventName = (EditText)findViewById(R.id.editText);
+        // Event description text view
+        EditText etEventDescription = (EditText)findViewById(R.id.editText3);
         // spinner = event type
         Spinner spinner = findViewById(R.id.spinner);
         // spinner 1 = start time
@@ -53,14 +56,6 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         // spinner 2 = end time
         Spinner spinner2 = findViewById(R.id.spinner2);
 
-        // spinner 3 = month
-        Spinner spinner3 = findViewById(R.id.spinner3);
-        // spinner 4 = date
-        Spinner spinner4 = findViewById(R.id.spinner4);
-        // spinner 5 = year
-        Spinner spinner5 = findViewById(R.id.spinner5);
-        // spinner 6 = event due time
-        Spinner spinner6 = findViewById(R.id.spinner6);
         // spinner 7 = event month
         Spinner spinner7 = findViewById(R.id.spinner7);
         // spinner 8 = event date
@@ -71,8 +66,20 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         RadioButton radioPublic = (RadioButton) findViewById(R.id.radioPublic);
         // private
         RadioButton radioPrivate = (RadioButton) findViewById(R.id.radioPrivate);
+
+        /*
+        // spinner 3 = sign up due month
+        Spinner spinner3 = findViewById(R.id.spinner3);
+        // spinner 4 = sign up due date
+        Spinner spinner4 = findViewById(R.id.spinner4);
+        // spinner 5 = sign up due year
+        Spinner spinner5 = findViewById(R.id.spinner5);
+        // spinner 6 = sign up due time
+        Spinner spinner6 = findViewById(R.id.spinner6);*/
+
+
         // Submit button
-        Button buttonSubmit = findViewById(R.id.button);
+        Button buttonNext = findViewById(R.id.buttonNext);
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.eventType, android.R.layout.simple_spinner_item);
@@ -90,27 +97,6 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         spinner2.setAdapter(adapter2);
         spinner2.setOnItemSelectedListener(this);
 
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
-        spinner3.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.dates, android.R.layout.simple_spinner_item);
-        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner4.setAdapter(adapter4);
-        spinner4.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
-        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner5.setAdapter(adapter5);
-        spinner5.setOnItemSelectedListener(this);
-
-
-        ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.times, android.R.layout.simple_spinner_item);
-        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner6.setAdapter(adapter6);
-        spinner6.setOnItemSelectedListener(this);
-
         ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
         adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner7.setAdapter(adapter7);
@@ -125,52 +111,57 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         adapter9.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner9.setAdapter(adapter9);
         spinner9.setOnItemSelectedListener(this);
-        /****************************/
-        DB1 = new DBHelper(this);
-        /*************************/
 
-        radioPublic.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                publicOrPrivate = "public";
-            }
-        }));
-
-        radioPrivate.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                publicOrPrivate = "private";
-            }
-        }));
-
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+        buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 eventName = etEventName.getText().toString();
 
-                System.out.println("Event Type is set to " + eventType);
-                System.out.println("Start time is set to " + startTime);
-                System.out.println("End time is set to " + endTime);
-                System.out.println("Event month: " + eventMonth);
-                System.out.println("Event date: " + eventDate);
-                System.out.println("Event year: " + eventYear);
-                System.out.println("Month is set to " + signupDueMonth);
-                System.out.println("Date is set to " + signupDueDate);
-                System.out.println("Year is set to " + signupDueYear);
-                System.out.println("Due time is set to " + signupDueTime);
-                System.out.println("User is : " + currentUser);
-                System.out.println("Event name: " + eventName);
-                System.out.println("Public or Private" + publicOrPrivate);
+                eventDescription = etEventDescription.getText().toString();
 
-                /****************************/
-                DB1.insertNewEventData(currentUser, eventName, eventType, startTime,
-                        endTime, eventMonth, eventDate, eventYear, signupDueMonth,
-                        signupDueDate, signupDueYear, signupDueTime, publicOrPrivate);
+                eventType = temp;
 
-                Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
-                startActivity(intent);
-                //  DB1.insertNewEventData(currentUser, eventName, eventType, startTime, endTime, eventMonth, eventDate, eventYear, signupDueMonth, signupDueDate, signupDueYear, signupDueTime);
-                /*************************/
+                startTime = temp1;
+
+                endTime = temp2;
+
+                eventMonth = temp3;
+
+                eventDate = temp8;
+
+                eventYear = temp9;
+
+                if (eventName.equals("") || eventDescription.equals("")) {
+                    Toast.makeText(CreateEvent.this, "Please fill in Event Name and/or Event Description", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    System.out.println("HEREERER");
+                    System.out.println("Eventname = " + eventName);
+                    System.out.println("event type = " + temp);
+                    System.out.println("event start time = " + temp1);
+                    //System.out.println("event start time = " + startTime);
+                    System.out.println("event end time = " + temp2);
+                    System.out.println("event Month = " + temp3);
+                    System.out.println("event Date = " + temp8);
+                    System.out.println("event Year = " + temp9);
+                    System.out.println("creator = " + currentUser);
+                    System.out.println("line 165");
+
+                    Intent intent = new Intent(getApplicationContext(), CreateEventPt2.class);
+
+                    intent.putExtra("eventName", eventName);
+                    intent.putExtra("eventType", eventType);
+                    intent.putExtra("eventStartTime", startTime);
+                    intent.putExtra("eventEndTime", endTime);
+                    intent.putExtra("eventMonth", eventMonth);
+                    intent.putExtra("eventDate", eventDate);
+                    intent.putExtra("eventYear", eventYear);
+                    intent.putExtra("eventCreator", currentUser);
+                    intent.putExtra("eventDescription", eventDescription);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -180,97 +171,31 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         switch (parent.getId()) {
             case R.id.spinner:
-                String temp = parent.getItemAtPosition(position).toString();
-                eventType = temp;
+                temp = parent.getItemAtPosition(position).toString();
                 break;
             case R.id.spinner1:
-                String temp1 = parent.getItemAtPosition(position).toString();
-                startTime = Integer.parseInt(temp1);
+                temp1 = parent.getItemAtPosition(position).toString();
                 break;
             case R.id.spinner2:
-                String temp2 = parent.getItemAtPosition(position).toString();
-                endTime = Integer.parseInt(temp2);
+                temp2 = parent.getItemAtPosition(position).toString();
                 break;
-            case R.id.spinner3:
-                signupDueMonth = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner4:
-                String temp4 = parent.getItemAtPosition(position).toString();
-                signupDueDate = Integer.parseInt(temp4);
-                break;
-            case R.id.spinner5:
-                String temp5 = parent.getItemAtPosition(position).toString();
-                signupDueYear = Integer.parseInt(temp5);
-                break;
-            case R.id.spinner6:
-                String temp6 = parent.getItemAtPosition(position).toString();
-                signupDueTime = Integer.parseInt(temp6);
-                break;
-
             case R.id.spinner7:
-                eventMonth = parent.getItemAtPosition(position).toString();
+                temp3 = parent.getItemAtPosition(position).toString();
                 break;
             case R.id.spinner8:
-                String temp8 = parent.getItemAtPosition(position).toString();
-                eventDate = Integer.parseInt(temp8);
+                temp8 = parent.getItemAtPosition(position).toString();
                 break;
             case R.id.spinner9:
-                String temp9 = parent.getItemAtPosition(position).toString();
-                eventYear = Integer.parseInt(temp9);
+                temp9 = parent.getItemAtPosition(position).toString();
                 break;
 
-
-            /*
-            case R.id.spinner:
-                eventType = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner1:
-                startTime = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner2:
-                endTime = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner3:
-                month = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner4:
-                date = parent.getItemAtPosition(position).toString();
-            case R.id.spinner5:
-                year = parent.getItemAtPosition(position).toString();
-            case R.id.spinner6:
-                eventDueTime = parent.getItemAtPosition(position).toString(); */
-
-            /*
-            case R.id.spinner:
-                eventType = parent.getItemAtPosition(position).toString();
-                break;
-            case R.id.spinner1:
-                startTime = Integer.parseInt(parent.getItemAtPosition(position).toString());
-                break;
-            case R.id.spinner2:
-                endTime = Integer.parseInt(parent.getItemAtPosition(position).toString());
-                break;
-            case R.id.spinner3:
-                month = Integer.parseInt(parent.getItemAtPosition(position).toString());
-                break;
-            case R.id.spinner4:
-                date = Integer.parseInt(parent.getItemAtPosition(position).toString());
-            case R.id.spinner5:
-                year = Integer.parseInt(parent.getItemAtPosition(position).toString());
-            case R.id.spinner6:
-                eventDueTime = Integer.parseInt(parent.getItemAtPosition(position).toString());*/
         }
-
-        /*
-        String text = parent.getItemAtPosition(position).toString();
-        System.out.println(text);
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();*/
     }
-
-
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+
 }

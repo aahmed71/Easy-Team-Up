@@ -13,9 +13,11 @@ public class UserPortal extends AppCompatActivity {
     Button viewMap;
     Button viewEvent;
     Button createEvent;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        user = getIntent().getStringExtra("user");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
         rsvpInvites = findViewById(R.id.rsvpInviteButton);
@@ -60,6 +62,7 @@ public class UserPortal extends AppCompatActivity {
 
     public void goToCreateEvent(){
         Intent intent = new Intent(this, CreateEvent.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
     public void goToManageEvents(){
