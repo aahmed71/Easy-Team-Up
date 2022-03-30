@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
+// just random changes so i can push this gain
     public Boolean deleteInvitation (Invite invite)
     {
         SQLiteDatabase DB = this.getWritableDatabase();

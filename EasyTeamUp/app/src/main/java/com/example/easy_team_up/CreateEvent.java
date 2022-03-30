@@ -135,7 +135,6 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                     Toast.makeText(CreateEvent.this, "Please fill in Event Name and/or Event Description", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
                     System.out.println("HEREERER");
                     System.out.println("Eventname = " + eventName);
                     System.out.println("event type = " + temp);

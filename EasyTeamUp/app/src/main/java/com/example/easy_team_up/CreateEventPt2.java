@@ -164,7 +164,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 break;
         }
     }
-
+// just random changes so i can push this again
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 

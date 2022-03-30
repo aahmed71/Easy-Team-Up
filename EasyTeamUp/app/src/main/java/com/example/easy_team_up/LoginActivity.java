@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View view) {
                 String user = username.getText().toString();
