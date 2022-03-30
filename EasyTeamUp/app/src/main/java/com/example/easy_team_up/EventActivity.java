@@ -29,10 +29,7 @@ public class EventActivity extends AppCompatActivity {
         accept = (Button)findViewById(R.id.accept);
         accept.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("result", getIntent().getStringExtra("address"));
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+                accept.setVisibility(View.GONE);
             }
         });
 
