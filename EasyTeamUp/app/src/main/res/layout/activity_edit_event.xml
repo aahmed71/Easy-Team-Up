@@ -174,7 +174,7 @@
         android:layout_below="@id/endTimeSpinner"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#D500F9"
         android:text="UPDATE"
         app:layout_constraintEnd_toEndOf="parent"

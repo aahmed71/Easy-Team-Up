@@ -34,7 +34,10 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
         Integer eventId = invites.get(position).eventId;
         Cursor event = DB.getEventById(eventId);
         event.moveToFirst();
-        holder.textView.setText(event.getString(2));
+        if(event.getCount() > 0) {
+            System.out.println(event.getString(2));
+            holder.textView.setText(event.getString(2));
+        }
     }
 
     @Override

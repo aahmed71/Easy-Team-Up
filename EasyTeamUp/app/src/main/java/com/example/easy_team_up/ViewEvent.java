@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class ViewEvent extends AppCompatActivity {
     private Button button;
-    private String returnPage;
+    private String returnPage = "";
     private Integer userId;
     DBHelper DB;
     @Override
@@ -26,6 +26,9 @@ public class ViewEvent extends AppCompatActivity {
             return;
         }
         returnPage = intent.getStringExtra("returnPage");
+        if(returnPage == null){
+            returnPage = "";
+        }
         System.out.println("Event id: " + eventId);
         DB = new DBHelper(this);
 
@@ -46,6 +49,10 @@ public class ViewEvent extends AppCompatActivity {
         //setting location
         TextView locationView = findViewById(R.id.location);
         locationView.setText(location);
+        //set description
+        String description = res.getString(14);
+        TextView descriptionView = findViewById(R.id.description);
+        descriptionView.setText(description);
 
         TextView dateView = findViewById(R.id.date);
         String date = res.getString(6) + ", " + res.getInt(7) + " " + res.getInt(8);

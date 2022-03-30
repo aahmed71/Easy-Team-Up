@@ -23,6 +23,7 @@ public class EditEvent extends AppCompatActivity {
     String eventName;
     String eventType;
     String eventLocation;
+    String eventDescription;
     String privateOrPublic;
     String month;
     Integer date;
@@ -59,10 +60,15 @@ public class EditEvent extends AppCompatActivity {
         EditText editType = (EditText) findViewById(R.id.eventType);
         if(eventType != null) editType.setHint("Event Type: " + eventType);
 
-        eventLocation = eventInfo.getString(14);
+        eventLocation = eventInfo.getString(15);
         System.out.println("event location: " + eventLocation);
         EditText editLocation = (EditText) findViewById(R.id.location);
         if(eventLocation != null) editLocation.setHint("Event Location: " + eventLocation);
+
+        eventDescription = eventInfo.getString(14);
+        System.out.println("event description: " + eventDescription);
+        EditText editDescription = (EditText) findViewById(R.id.eventDescription);
+        if(eventDescription != null) editLocation.setHint("Event description: " + eventDescription);
 
         Spinner monthSpinner = findViewById(R.id.month);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -136,7 +142,6 @@ public class EditEvent extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
                 year = eventInfo.getInt(8);
-//                Toast.makeText(parent.getContext(), "Selected: " + String.valueOf(year), Toast.LENGTH_LONG).show();
             }
         });
         Spinner timeSpinner = findViewById(R.id.startTime);
@@ -203,6 +208,7 @@ public class EditEvent extends AppCompatActivity {
                 eventName = editName.getText().toString();
                 eventType = editType.getText().toString();
                 eventLocation = editLocation.getText().toString();
+                eventDescription = editDescription.getText().toString();
                 System.out.println(eventName);
                 System.out.println(eventType);
                 System.out.println(eventLocation);
@@ -213,7 +219,7 @@ public class EditEvent extends AppCompatActivity {
                 System.out.println(startTime);
                 System.out.println(endTime);
                 DB.updateMyEvent(eventId, eventName, eventType, startTime,
-                        endTime, month, date, year, eventLocation, privateOrPublic);
+                        endTime, month, date, year, eventLocation, privateOrPublic, eventDescription);
                 DB.close();
                 //return to my events
                 returnToMyEvents();
