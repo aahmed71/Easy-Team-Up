@@ -30,7 +30,7 @@
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_create_event_pt2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.21979166666666666" />
-        <entry key="app/src/main/res/layout/activity_newuser.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_newuser.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_returning_user_login.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/activity_user_portal.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/activity_view_my_events.xml" value="0.234375" />
