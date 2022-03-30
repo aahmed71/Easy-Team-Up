@@ -61,6 +61,8 @@ class EventVH extends RecyclerView.ViewHolder{
         System.out.println(adapter.events.get(getAdapterPosition()).eventId);
         intent.putExtra("eventId",
                 adapter.events.get(getAdapterPosition()).eventId);
+        intent.putExtra("userId",
+                adapter.userId);
         adapter.c.startActivity(intent);
     }
     public EventVH(@NonNull View itemView){

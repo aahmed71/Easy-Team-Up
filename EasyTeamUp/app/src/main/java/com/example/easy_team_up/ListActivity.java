@@ -35,15 +35,14 @@ public class ListActivity extends AppCompatActivity {
 //        }
         while(res.moveToNext()){
             //invite user event title
-            Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
-                    res.getString(1));
+            Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
             invites.add(invite);
         }
         //end snippet
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        PublicAdapter adapter = new PublicAdapter(invites, DB, this);
+        PublicAdapter adapter = new PublicAdapter(invites, DB, this, 1);
         recyclerView.setAdapter(adapter);
 
     }

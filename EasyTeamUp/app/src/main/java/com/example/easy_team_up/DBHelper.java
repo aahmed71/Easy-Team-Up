@@ -12,7 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
-        DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 1, 1), ('party', 2, 1), ('hang out', 3, 1)");
+        DB.execSQL("insert into Invitations (eventId, userId) VALUES (1, 1), (2, 1), (3, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
@@ -34,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
         System.out.print("Deleting invitation");
         Cursor cursor = DB.rawQuery("Select * from Invitations", null);
         if (cursor.getCount() > 0) {
+            cursor.close();
             //delete invitation and add to rsvp
             long deleteResult = DB.delete("Invitations", "id=?", new String[]{String.valueOf(invite.inviteId)});
             ContentValues contentValues = new ContentValues();
@@ -58,6 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         System.out.print("Deleting invitation");
         Cursor cursor = DB.rawQuery("Select * from Invitations", null);
         if (cursor.getCount() > 0) {
+            cursor.close();
             //delete invitation and add to rsvp
             long deleteResult = DB.delete("Invitations", "id=?", new String[]{String.valueOf(invite.inviteId)});
             if (deleteResult != -1) {

@@ -31,7 +31,10 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
 
     @Override
     public void onBindViewHolder(@NonNull DemoVH holder, int position) {
-        holder.textView.setText(invites.get(position).title);
+        Integer eventId = invites.get(position).eventId;
+        Cursor event = DB.getEventById(eventId);
+        event.moveToFirst();
+        holder.textView.setText(event.getString(2));
     }
 
     @Override

@@ -29,6 +29,7 @@ public class EditEvent extends AppCompatActivity {
     Integer year;
     Integer startTime;
     Integer endTime;
+    Integer userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class EditEvent extends AppCompatActivity {
         //get intent
         Intent intent = getIntent();
         eventId = intent.getIntExtra("eventId", -1);
+        userId = intent.getIntExtra("userId", -1);
         if(eventId == -1){
             System.out.println("event does not exist");
             return;
@@ -222,6 +224,7 @@ public class EditEvent extends AppCompatActivity {
     }
     public void returnToMyEvents(){
         Intent intent = new Intent(this, ViewMyEvents.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 }

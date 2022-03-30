@@ -31,8 +31,7 @@ public class InvitationActivity extends AppCompatActivity{
         Cursor res = DB.getInvitations(userId);
         while(res.moveToNext()){
             //invite user event title
-            Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
-                    res.getString(1));
+            Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
             invites.add(invite);
         }
         //end snippet
@@ -61,8 +60,7 @@ public class InvitationActivity extends AppCompatActivity{
                     Cursor rsvpRes = DB.getRSVPs(userId);
                     while(rsvpRes.moveToNext()){
                         //id event user
-                        Invite rsvp = new Invite(rsvpRes.getInt(0), rsvpRes.getInt(2), rsvpRes.getInt(1),
-                                "empty");
+                        Invite rsvp = new Invite(rsvpRes.getInt(0), rsvpRes.getInt(1), rsvpRes.getInt(2));
                         rsvps.add(rsvp);
                     }
 
@@ -79,9 +77,8 @@ public class InvitationActivity extends AppCompatActivity{
                     //get updated invitations
                     Cursor res = DB.getInvitations(userId);
                     while(res.moveToNext()){
-                        //invite user event title
-                        Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
-                                res.getString(1));
+                        //invite user event
+                        Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
                         invites.add(invite);
                     }
 

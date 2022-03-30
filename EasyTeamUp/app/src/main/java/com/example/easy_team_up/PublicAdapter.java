@@ -14,10 +14,12 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicVH>{
     List<Invite> invites;
     DBHelper DB;
     Context c;
-    public PublicAdapter(List<Invite> invites, DBHelper DB, Context c){
+    Integer userId;
+    public PublicAdapter(List<Invite> invites, DBHelper DB, Context c, Integer userId){
         this.invites = invites;
         this.DB = DB;
         this.c = c;
+        this.userId = userId;
     }
     @NonNull
     @Override
@@ -29,7 +31,10 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicVH>{
 
     @Override
     public void onBindViewHolder(@NonNull PublicVH holder, int position) {
-        holder.textView.setText(invites.get(position).title);
+        Integer eventId = invites.get(position).eventId;
+        Cursor event = DB.getEventById(eventId);
+        event.moveToFirst();
+        holder.textView.setText(event.getString(2));
     }
 
     @Override
