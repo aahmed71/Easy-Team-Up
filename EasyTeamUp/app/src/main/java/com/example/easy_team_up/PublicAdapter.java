@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class PublicAdapter extends RecyclerView.Adapter<PublicVH>{
-    List<Invite> invites;
+    List<Event2> invites;
     DBHelper DB;
     Context c;
     Integer userId;
-    public PublicAdapter(List<Invite> invites, DBHelper DB, Context c, Integer userId){
+    public PublicAdapter(List<Event2> invites, DBHelper DB, Context c, Integer userId){
         this.invites = invites;
         this.DB = DB;
         this.c = c;
@@ -31,10 +31,7 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicVH>{
 
     @Override
     public void onBindViewHolder(@NonNull PublicVH holder, int position) {
-        Integer eventId = invites.get(position).eventId;
-        Cursor event = DB.getEventById(eventId);
-        event.moveToFirst();
-        holder.textView.setText(event.getString(2));
+        holder.textView.setText(invites.get(position).getName());
     }
 
     @Override
@@ -47,11 +44,14 @@ class PublicVH extends RecyclerView.ViewHolder{
     TextView textView;
     private PublicAdapter adapter;
     public void displayEvent(){
-        Intent intent = new Intent(adapter.c, ViewEvent.class);
-        System.out.println(adapter.invites.get(getAdapterPosition()).eventId);
-        intent.putExtra("eventId",
-                adapter.invites.get(getAdapterPosition()).eventId);
-        adapter.c.startActivity(intent);
+        Event2 event = adapter.invites.get(getAdapterPosition());
+        Intent i = new Intent(adapter.c, EventActivity.class);
+        i.putExtra("name", event.getName());
+        i.putExtra("desc", event.getDesc());
+        i.putExtra("address", event.getAddress());
+        i.putExtra("time", event.getTime().toString());
+        adapter.c.startActivity(i);
+        //System.out.println(adapter.invites.get(getAdapterPosition()).eventId);
     }
     public PublicVH(@NonNull View itemView){
         super(itemView);
@@ -62,10 +62,11 @@ class PublicVH extends RecyclerView.ViewHolder{
         });
         itemView.findViewById(R.id.accept).setOnClickListener(view -> {
             //call database and delete
+            /*
             System.out.print("hi accept");
             adapter.DB.acceptInvitation(adapter.invites.get(getAdapterPosition()));
             adapter.invites.remove(getAdapterPosition());
-            adapter.notifyItemRemoved(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());*/
         });
     }
     public PublicVH linkAdapter(PublicAdapter adapter){

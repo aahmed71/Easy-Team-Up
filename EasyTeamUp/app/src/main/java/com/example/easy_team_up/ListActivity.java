@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,9 +24,12 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
+        ArrayList<Event2> invites = new ArrayList<Event2>();
+        invites.add(new Event2("Study", "Studying for midterms.",
+                "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43)));
+        invites.add(new Event2("Birthday", "Bob's birthday.",
+                "3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50)));
         DB = new DBHelper(this);
-        List<Invite> invites = new LinkedList<>();
         //want grab from database here: need to pass in the userid
 
         //try id that doesnt exist
@@ -33,11 +38,6 @@ public class ListActivity extends AppCompatActivity {
 //            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
 //            return;
 //        }
-        while(res.moveToNext()){
-            //invite user event title
-            Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
-            invites.add(invite);
-        }
         //end snippet
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

@@ -151,9 +151,8 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                     Cursor cursor = DB1.getIdfromUsername(currentUser);
                     if (cursor.moveToFirst()) {
                         Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
-                       // System.out.println(cursor.getString(cursor.getColumnIndex("userId")));
+                        //cursor.getString(cursor.getInt(1));
                     }
-
                 }
                 else {
                     Toast.makeText(CreateEventPt2.this, "User does not exist", Toast.LENGTH_SHORT).show();
