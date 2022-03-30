@@ -21,7 +21,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_invitations);
+        setContentView(R.layout.activity_list);
 
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();
@@ -45,12 +45,7 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         PublicAdapter adapter = new PublicAdapter(invites, DB, this);
         recyclerView.setAdapter(adapter);
-        userPortal = (Button) findViewById(R.id.returnUser);
-        userPortal.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                goToPortal();
-            }
-        });
+
     }
     public void goToPortal(){
         Intent intent = new Intent(this, UserPortal.class);
