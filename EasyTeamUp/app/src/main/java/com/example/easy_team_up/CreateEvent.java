@@ -63,9 +63,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         // spinner 9 = event year
         Spinner spinner9 = findViewById(R.id.spinner9);
         // public
-        RadioButton radioPublic = (RadioButton) findViewById(R.id.radioPublic);
-        // private
-        RadioButton radioPrivate = (RadioButton) findViewById(R.id.radioPrivate);
+
 
         /*
         // spinner 3 = sign up due month

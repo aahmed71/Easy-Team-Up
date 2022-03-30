@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
     String temp4;
     String temp5;
     String temp6;
+    String temp10;
+    String userSearch;
 
 
     @Override
@@ -63,11 +66,12 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         // spinner 6 = sign up due time
         Spinner spinner6 = findViewById(R.id.spinner6);
         // public
-        RadioButton radioPublic = (RadioButton) findViewById(R.id.radioPublic);
-        // private
-        RadioButton radioPrivate = (RadioButton) findViewById(R.id.radioPrivate);
+        Spinner spinner10 = findViewById(R.id.spinner10);
         // Submit button
         Button buttonSubmit = findViewById(R.id.buttonCreate);
+        // User search button
+        Button buttonSearch = findViewById(R.id.buttonCreate2);
+        EditText etUsernameSearch = findViewById(R.id.editTextTextPersonName);
 
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -84,36 +88,28 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         spinner5.setAdapter(adapter5);
         spinner5.setOnItemSelectedListener(this);
 
-
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.times, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner6.setAdapter(adapter6);
         spinner6.setOnItemSelectedListener(this);
 
+        ArrayAdapter<CharSequence> adapter10 = ArrayAdapter.createFromResource(this, R.array.privorpub, android.R.layout.simple_spinner_item);
+        adapter10.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner10.setAdapter(adapter10);
+        spinner10.setOnItemSelectedListener(this);
+
         DB1 = new DBHelper(this);
 
 
-        radioPublic.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                publicOrPrivate = "public";
-            }
-        }));
-
-        radioPrivate.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                publicOrPrivate = "private";
-            }
-        }));
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                temp10.toLowerCase();
                 signupDueDate = Integer.parseInt(removeLeadingZeroes(removeTrailingZeroes(temp4)));
                 signupDueYear = Integer.parseInt(removeLeadingZeroes(removeTrailingZeroes(temp5)));
                 signupDueTime = Integer.parseInt(removeLeadingZeroes(removeTrailingZeroes(temp6)));
+                publicOrPrivate = temp10;
 
                 System.out.println("Event Type is set to " + eventType);
                 System.out.println("Start time is set to " + startTime);
@@ -143,7 +139,22 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
 
             }
         });
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userSearch = etUsernameSearch.getText().toString();
+                if (DB1.checkUserName(userSearch)) {
+
+                }
+                else {
+                    Toast.makeText(CreateEventPt2.this, "User does not exist", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
+
 
 
     @Override
@@ -161,6 +172,9 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 break;
             case R.id.spinner6:
                 temp6 = parent.getItemAtPosition(position).toString();
+                break;
+            case R.id.spinner10:
+                temp10 = parent.getItemAtPosition(position).toString();
                 break;
         }
     }
