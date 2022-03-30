@@ -18,15 +18,17 @@ public class InvitationActivity extends AppCompatActivity{
     DBHelper DB;
     Button switchView;
     Button userPortal;
+    Integer userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_invitations);
-
+        userId = getIntent().getIntExtra("userId", -1);
+        System.out.println("manage invitations userid: " + userId);
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();
         //want grab from database here: need to pass in the userid
-        Cursor res = DB.getInvitations(1);
+        Cursor res = DB.getInvitations(userId);
         while(res.moveToNext()){
             //invite user event title
             Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
@@ -56,7 +58,7 @@ public class InvitationActivity extends AppCompatActivity{
                     changeView.setText("View Invitations");
                     //get updated rsvps
                     List<Invite> rsvps = new LinkedList<>();
-                    Cursor rsvpRes = DB.getRSVPs(1);
+                    Cursor rsvpRes = DB.getRSVPs(userId);
                     while(rsvpRes.moveToNext()){
                         //id event user
                         Invite rsvp = new Invite(rsvpRes.getInt(0), rsvpRes.getInt(2), rsvpRes.getInt(1),
@@ -75,7 +77,7 @@ public class InvitationActivity extends AppCompatActivity{
 
                     List<Invite> invites = new LinkedList<>();
                     //get updated invitations
-                    Cursor res = DB.getInvitations(1);
+                    Cursor res = DB.getInvitations(userId);
                     while(res.moveToNext()){
                         //invite user event title
                         Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),
@@ -93,6 +95,7 @@ public class InvitationActivity extends AppCompatActivity{
     }
     public void goToPortal(){
         Intent intent = new Intent(this, UserPortal.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 }

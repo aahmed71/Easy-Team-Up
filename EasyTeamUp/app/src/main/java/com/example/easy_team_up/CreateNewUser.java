@@ -47,11 +47,11 @@ public class CreateNewUser extends AppCompatActivity {
                     if (pass.equals(repass)) {
                         Boolean checkuser = DB.checkUserName(user);
                         if (checkuser == false) {
-                            Boolean insert = DB.insertNewUserData(user, pass, email, age);
-                            if (insert == true) {
+                            Integer userId = DB.insertNewUserData(user, pass, email, age);
+                            if (userId != -1) {
                                 Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
-                                intent.putExtra("user", user);
+                                intent.putExtra("userId", userId);
                                 startActivity(intent);
                             }
                             else {

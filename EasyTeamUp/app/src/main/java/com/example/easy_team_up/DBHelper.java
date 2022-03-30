@@ -14,10 +14,10 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, eventId INT, userId INT)");
         DB.execSQL("insert into Invitations (title, eventId, userId) VALUES ('study', 1, 1), ('party', 2, 1), ('hang out', 3, 1)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
-        DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
+        DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
-        DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
+//        DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
         DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, age INT)");
         DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
     }
@@ -121,7 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /*****************/
     // Insert into  login database
-    public Boolean insertNewUserData(String username, String password, String email, String age) {
+    public Integer insertNewUserData(String username, String password, String email, String age) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
@@ -129,8 +129,12 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("email", email);
         contentValues.put("age", age);
         long result = MyDB.insert("users", null, contentValues);
-        if (result == -1) return false;
-        else return true;
+        Cursor userId = MyDB.rawQuery("Select id from users where username = ? and password = ?", new String[] {username, password});
+        if (result == -1) return -1;
+        else{
+            userId.moveToFirst();
+            return userId.getInt(0);
+        }
     }
 
     public Boolean checkUserName(String username) {
@@ -142,13 +146,13 @@ public class DBHelper extends SQLiteOpenHelper {
         else return false;
     }
 
-    public Boolean checkUserNamePassword(String username, String password) {
+    public Cursor checkUserNamePassword(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username, password});
         if (cursor.getCount() > 0) {
-            return true;
+            return cursor;
         }
-        else return false;
+        else return null;
     }
     /*************************************/
     public Cursor getNameFromUserId(Integer userId){

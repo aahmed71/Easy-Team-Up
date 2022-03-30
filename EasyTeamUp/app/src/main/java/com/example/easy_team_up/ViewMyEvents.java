@@ -16,16 +16,19 @@ import java.util.List;
 public class ViewMyEvents extends AppCompatActivity {
     DBHelper DB;
     Button back;
+    Integer userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_events);
+        userId = getIntent().getIntExtra("userId", -1);
+        System.out.println("current userid: " + userId);
         DB = new DBHelper(this);
         List<Event> events = new LinkedList<>();
         //want grab from database here: need to pass in the userid
 
         //try id that doesnt exist
-        Cursor res = DB.getMyEvents(1);
+        Cursor res = DB.getMyEvents(userId);
 //        if(res.getCount()==0){
 //            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
 //            return;
@@ -51,6 +54,7 @@ public class ViewMyEvents extends AppCompatActivity {
     }
     public void goToPortal(){
         Intent intent = new Intent(this, UserPortal.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 }

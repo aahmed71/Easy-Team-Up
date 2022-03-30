@@ -1,6 +1,7 @@
 package com.example.easy_team_up;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -39,19 +40,16 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Boolean checkUserPass = DB.checkUserNamePassword(user, pass);
-                    if (checkUserPass == true) {
+                    Cursor checkUserPass = DB.checkUserNamePassword(user, pass);
+                    if (checkUserPass != null) {
                         Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
-                        intent.putExtra("user", user);
+                        checkUserPass.moveToFirst();
+                        intent.putExtra("userId", checkUserPass.getInt(0));
                         startActivity(intent);
                     }
                     else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                        /*
-
-                        Intent intent  = new Intent(getApplicationContext(), CreateNewUser.class);
-                        startActivity(intent);*/
                     }
                 }
             }

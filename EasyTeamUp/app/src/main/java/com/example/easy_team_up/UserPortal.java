@@ -13,11 +13,12 @@ public class UserPortal extends AppCompatActivity {
     Button viewMap;
     Button viewEvent;
     Button createEvent;
-    String user;
+    Integer userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        user = getIntent().getStringExtra("user");
+        userId = getIntent().getIntExtra("userId", -1);
+        System.out.println("current userid: " + userId);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
         rsvpInvites = findViewById(R.id.rsvpInviteButton);
@@ -57,26 +58,30 @@ public class UserPortal extends AppCompatActivity {
     }
     public void goToInvitations(){
         Intent intent = new Intent(this, InvitationActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void goToCreateEvent(){
         Intent intent = new Intent(this, CreateEvent.class);
-        intent.putExtra("user", user);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
     public void goToManageEvents(){
         Intent intent = new Intent(this, ViewMyEvents.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void goToMaps(){
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void goToEvents(){
         Intent intent = new Intent(this, ListActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
