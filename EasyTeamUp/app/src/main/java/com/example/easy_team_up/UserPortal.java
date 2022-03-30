@@ -13,6 +13,7 @@ public class UserPortal extends AppCompatActivity {
     Button viewMap;
     Button viewEvent;
     Button createEvent;
+    Button logOut;
     Integer userId;
 
     @Override
@@ -21,6 +22,12 @@ public class UserPortal extends AppCompatActivity {
         System.out.println("current userid: " + userId);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
+        logOut = findViewById(R.id.logOutButton);
+        logOut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                logOutUser();
+            }
+        });
         rsvpInvites = findViewById(R.id.rsvpInviteButton);
         rsvpInvites.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -56,6 +63,13 @@ public class UserPortal extends AppCompatActivity {
         });
 
     }
+    public void logOutUser(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        System.out.println("logging out user");
+        intent.putExtra("userId", -1);
+        startActivity(intent);
+    }
+
     public void goToInvitations(){
         Intent intent = new Intent(this, InvitationActivity.class);
         intent.putExtra("userId", userId);
