@@ -213,9 +213,15 @@ public class EditEvent extends AppCompatActivity {
                 DB.updateMyEvent(eventId, eventName, eventType, startTime,
                         endTime, month, date, year, eventLocation, privateOrPublic);
                 DB.close();
+                //return to my events
+                returnToMyEvents();
             }
         };
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(submitChanges);
+    }
+    public void returnToMyEvents(){
+        Intent intent = new Intent(this, ViewMyEvents.class);
+        startActivity(intent);
     }
 }

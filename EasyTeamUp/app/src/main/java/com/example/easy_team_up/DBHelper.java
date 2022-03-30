@@ -16,9 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
-                "privateOrPublic TEXT, location TEXT, eventDescription TEXT)");
+                "privateOrPublic TEXT, location TEXT)");
         DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
-        DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, age INT)");
+        DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
         DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
     }
     @Override
@@ -97,10 +97,10 @@ public class DBHelper extends SQLiteOpenHelper {
     int eventEndTime, String eventMonth,
     int eventDate, int eventYear,
     String signupDueMonth, int signupDueDate,
-    int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription) {
+    int signupDueYear, int signupDueTime, String privateOrPublic) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("userId", username);
+        contentValues.put("eventCreator", username);
         contentValues.put("eventType", eventType);
         contentValues.put("eventName", eventName);
         contentValues.put("eventStartTime", eventStartTime);
@@ -112,23 +112,20 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("signupDueDate", signupDueDate);
         contentValues.put("signupDueYear", signupDueYear);
         contentValues.put("signupDueTime", signupDueTime);
-        contentValues.put("eventDescription", eventDescription);
         contentValues.put("privateOrPublic", privateOrPublic);
 
 
-        MyDB.insert("Events", null, contentValues);
+        MyDB.insert("events", null, contentValues);
     }
 
     /*****************/
     // Insert into  login database
-    public Boolean insertNewUserData(String username, String password, String email, String age) {
+    public Boolean insertNewUserData(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
-        contentValues.put("email", email);
-        contentValues.put("age", Integer.parseInt(age));
-        long result = MyDB.insert("Users", null, contentValues);
+        long result = MyDB.insert("users", null, contentValues);
         if (result == -1) return false;
         else return true;
     }

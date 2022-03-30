@@ -1,13 +1,17 @@
 package com.example.easy_team_up;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EventActivity extends AppCompatActivity {
-
+    Button accept;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +26,15 @@ public class EventActivity extends AppCompatActivity {
         TextView descText = (TextView)findViewById(R.id.desc);
         descText.setText(getIntent().getStringExtra("desc"));
 
-        //        findViewById(R.id.add).setOnClickListener(view ->{
-//            items.add(data[counter%3]);
-//            counter++;
-//            adapter.notifyItemInserted(items.size()-1);
-//        });
+        accept = (Button)findViewById(R.id.accept);
+        accept.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", getIntent().getStringExtra("address"));
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
+            }
+        });
+
     }
 }

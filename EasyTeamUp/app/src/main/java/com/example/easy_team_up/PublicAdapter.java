@@ -55,6 +55,13 @@ class PublicVH extends RecyclerView.ViewHolder{
             displayEvent();
             System.out.println("clicking event");
         });
+        itemView.findViewById(R.id.accept).setOnClickListener(view -> {
+            //call database and delete
+            System.out.print("hi accept");
+            adapter.DB.acceptInvitation(adapter.invites.get(getAdapterPosition()));
+            adapter.invites.remove(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());
+        });
     }
     public PublicVH linkAdapter(PublicAdapter adapter){
         this.adapter = adapter;
