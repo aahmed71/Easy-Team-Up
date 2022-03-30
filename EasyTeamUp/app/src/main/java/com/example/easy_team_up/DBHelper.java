@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
-        super(context, "database", null, 1);
+        super(context, "database.db", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
@@ -16,9 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
-                "privateOrPublic TEXT, location TEXT)");
+                "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
         DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
-        DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+        DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, age INT)");
         DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
     }
     @Override
@@ -97,10 +97,10 @@ public class DBHelper extends SQLiteOpenHelper {
     int eventEndTime, String eventMonth,
     int eventDate, int eventYear,
     String signupDueMonth, int signupDueDate,
-    int signupDueYear, int signupDueTime, String privateOrPublic) {
+    int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("eventCreator", username);
+        contentValues.put("userId", username);
         contentValues.put("eventType", eventType);
         contentValues.put("eventName", eventName);
         contentValues.put("eventStartTime", eventStartTime);
@@ -113,6 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("signupDueYear", signupDueYear);
         contentValues.put("signupDueTime", signupDueTime);
         contentValues.put("privateOrPublic", privateOrPublic);
+        contentValues.put("eventDescription", eventDescription);
 
 
         MyDB.insert("events", null, contentValues);
@@ -120,11 +121,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /*****************/
     // Insert into  login database
-    public Boolean insertNewUserData(String username, String password) {
+    public Boolean insertNewUserData(String username, String password, String email, String age) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
+        contentValues.put("email", email);
+        contentValues.put("age", age);
         long result = MyDB.insert("users", null, contentValues);
         if (result == -1) return false;
         else return true;
