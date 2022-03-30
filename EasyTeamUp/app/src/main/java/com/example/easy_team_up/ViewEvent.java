@@ -32,7 +32,7 @@ public class ViewEvent extends AppCompatActivity {
         Cursor res = DB.getEventById(eventId);
         System.out.println("result size: " + res.getCount());
         res.moveToFirst();
-        String location = res.getString(14);
+        String location = res.getString(15);
         Cursor userRes = DB.getNameFromUserId(Integer.parseInt(res.getString(1)));
         userRes.moveToFirst();
         //setting title
