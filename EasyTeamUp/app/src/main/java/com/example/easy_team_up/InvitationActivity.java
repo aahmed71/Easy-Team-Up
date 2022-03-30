@@ -26,13 +26,7 @@ public class InvitationActivity extends AppCompatActivity{
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();
         //want grab from database here: need to pass in the userid
-
-        //try id that doesnt exist
         Cursor res = DB.getInvitations(1);
-//        if(res.getCount()==0){
-//            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
         while(res.moveToNext()){
             //invite user event title
             Invite invite = new Invite(res.getInt(0), res.getInt(3), res.getInt(2),

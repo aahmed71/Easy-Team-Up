@@ -17,7 +17,10 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, location TEXT)");
-        DB.execSQL("insert into Events (eventName, userId, location) VALUES ('party', 1, 'beach'), ('study', 1, 'library')");
+        DB.execSQL("insert into Events (eventName, userId, location, eventType, eventMonth, eventDate, " +
+                "eventYear, eventStartTime, eventEndTime, signupDueMonth, signupDueDate, signupDueYear, signupDueTime) " +
+                "VALUES ('party', 1, 'beach', 'social', 'January', 30, 2022, 8, 9, 'January', 2, 2022, 8), " +
+                "('study', 1, 'library','study', 'February', 3, 2024, 4, 5, 'March', 8, 2025, 7)");
         DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
         DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
     }

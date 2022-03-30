@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class ViewMyEvents extends AppCompatActivity {
     DBHelper DB;
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,5 +41,16 @@ public class ViewMyEvents extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         EventAdapter adapter = new EventAdapter(events, DB, this);
         recyclerView.setAdapter(adapter);
+
+        back = (Button) findViewById(R.id.returnUser);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goToPortal();
+            }
+        });
+    }
+    public void goToPortal(){
+        Intent intent = new Intent(this, UserPortal.class);
+        startActivity(intent);
     }
 }
