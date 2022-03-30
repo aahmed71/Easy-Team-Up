@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class ViewEvent extends AppCompatActivity {
     private Button button;
     private String returnPage;
+    private Integer userId;
     DBHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class ViewEvent extends AppCompatActivity {
         setContentView(R.layout.display_event);
         Intent intent = getIntent();
         Integer eventId = intent.getIntExtra("eventId", -1);
+        userId = intent.getIntExtra("userId", -1);
         if(eventId == -1){
             System.out.println("event does not exist");
             return;
@@ -79,10 +81,12 @@ public class ViewEvent extends AppCompatActivity {
 
     public void displayInvitations(){
         Intent intent = new Intent(this, InvitationActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
     public void viewMyEvents(){
         Intent intent = new Intent(this, ViewMyEvents.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 }
