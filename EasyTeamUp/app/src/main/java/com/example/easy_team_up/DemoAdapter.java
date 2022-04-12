@@ -60,15 +60,31 @@ class DemoVH extends RecyclerView.ViewHolder{
     public DemoVH(@NonNull View itemView){
         super(itemView);
         textView = itemView.findViewById(R.id.text);
+
         textView.setOnClickListener(view->{
             displayEvent();
             System.out.println("clicking event");
         });
+        //get user name
+        Cursor username = adapter.DB.getNameFromUserId(adapter.userId);
+        username.moveToFirst();
+        String currUser = username.getString(1);
+
         //deleting invitation
         itemView.findViewById(R.id.delete).setOnClickListener(view -> {
             //call database and delete
             System.out.print("hi delete");
-            adapter.DB.deleteInvitation(adapter.invites.get(getAdapterPosition()));
+            Invite invite = adapter.invites.get(getAdapterPosition());
+            adapter.DB.deleteInvitation(invite);
+            //adding reject invite notification
+            String rejectInvitation = currUser + " has rejected your invitation.";
+            //get event from eventId and get organizer id
+            Cursor event = adapter.DB.getEventById(invite.eventId);
+            event.moveToFirst();
+            //idx 1 is userId of organizer
+            Integer organizer = event.getInt(1);
+            //create reject notification
+            adapter.DB.insertNotification(rejectInvitation, organizer);
             adapter.invites.remove(getAdapterPosition());
             adapter.notifyItemRemoved(getAdapterPosition());
         });
@@ -76,7 +92,17 @@ class DemoVH extends RecyclerView.ViewHolder{
         itemView.findViewById(R.id.accept).setOnClickListener(view -> {
             //call database and delete
             System.out.print("hi accept");
-            adapter.DB.acceptInvitation(adapter.invites.get(getAdapterPosition()));
+            String acceptInvitation = currUser + " has accepted your invitation.";
+            Invite invite = adapter.invites.get(getAdapterPosition());
+            //get event from eventId and get organizer id
+            Cursor event = adapter.DB.getEventById(invite.eventId);
+            event.moveToFirst();
+            //idx 1 is userId of organizer
+            Integer organizer = event.getInt(1);
+            //create reject notification
+            adapter.DB.insertNotification(acceptInvitation, organizer);
+
+            adapter.DB.acceptInvitation(invite);
             adapter.invites.remove(getAdapterPosition());
             adapter.notifyItemRemoved(getAdapterPosition());
         });
