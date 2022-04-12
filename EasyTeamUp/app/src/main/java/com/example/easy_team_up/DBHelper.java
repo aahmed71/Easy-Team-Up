@@ -13,6 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
+        DB.execSQL("create Table Notifications (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, userId INT)");
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
@@ -25,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Events");
         DB.execSQL("drop Table if exists RSVPs");
         DB.execSQL("drop Table if exists Users");
+        DB.execSQL("drop Table if exists Notifications");
     }
     public Boolean acceptInvitation (Invite invite)
     {
