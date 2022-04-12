@@ -93,6 +93,26 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public Boolean deleteNotification (Integer id)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        System.out.print("Deleting notification");
+        Cursor cursor = DB.rawQuery("Select * from Notifications", null);
+        if (cursor.getCount() > 0) {
+            //delete invitation and add to rsvp
+            long deleteResult = DB.delete("Notifications", "id=?", new String[]{String.valueOf(id)});
+            if (deleteResult != -1) {
+                System.out.print("delete notification success");
+                return true;
+            } else {
+                System.out.print("delete notification fail");
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     // insert into events database
     public void insertNewEventData(String username, String eventName,
             String eventType, int eventStartTime,
@@ -137,6 +157,18 @@ public class DBHelper extends SQLiteOpenHelper {
             userId.moveToFirst();
             return userId.getInt(0);
         }
+    }
+
+    public Boolean insertNotification(String description, Integer userId){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("userId", userId);
+        contentValues.put("description", description);
+        long result = MyDB.insert("Notifications", null, contentValues);
+        if (result == -1){
+            return false;
+        }
+        return true;
     }
 
     public Boolean checkUserName(String username) {
