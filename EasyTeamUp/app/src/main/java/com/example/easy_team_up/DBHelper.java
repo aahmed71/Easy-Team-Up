@@ -174,6 +174,11 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
     }
+    public Cursor getNotifications(Integer userId) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Notifications WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
     public Cursor getMyEvents(Integer userId){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Events WHERE userId = ?", new String[]{String.valueOf(userId)});
