@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "database", null, 1);
@@ -14,6 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table Notifications (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, userId INT)");
+        //change to startTimestamp, endTimestamp string
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
@@ -122,13 +126,20 @@ public class DBHelper extends SQLiteOpenHelper {
     int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        //create new event date, start timestamp, end timestamp, signup due date, signup due time
+        //create new event date
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        String d = eventDate + "/" + eventMonth + "/" + eventYear;
+//        Date date = dateFormat.parse(d);
+//        long time = date.getTime();
+//        Timestamp eventDate = new Timestamp(time);
         contentValues.put("userId", userId);
         contentValues.put("eventType", eventType);
         contentValues.put("eventName", eventName);
         contentValues.put("eventStartTime", eventStartTime);
         contentValues.put("eventEndTime", eventEndTime);
         contentValues.put("eventMonth", eventMonth);
-        contentValues.put("eventDate", eventDate);
+//        contentValues.put("eventDate", eventDate);
         contentValues.put("eventYear", eventYear);
         contentValues.put("signupDueMonth", signupDueMonth);
         contentValues.put("signupDueDate", signupDueDate);

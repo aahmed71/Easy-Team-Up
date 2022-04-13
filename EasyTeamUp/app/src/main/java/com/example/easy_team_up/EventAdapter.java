@@ -9,17 +9,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
 
 public class EventAdapter extends RecyclerView.Adapter<EventVH>{
     List<Event> events;
     DBHelper DB;
     Context c;
     Integer userId;
+    Timestamp currTime;
+//    LocalDate currentdate = LocalDate.now();
+//    int currentDay = currentdate.getDayOfMonth();
+//    Month currentMonth = currentdate.getMonth();
+//    int currentYear = currentdate.getYear();
     public EventAdapter(List<Event> events, DBHelper DB, Context c, Integer userId){
         this.events = events;
         this.DB = DB;
         this.c = c;
         this.userId = userId;
+        currTime = new Timestamp(System.currentTimeMillis());
     }
     @NonNull
     @Override

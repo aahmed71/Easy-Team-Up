@@ -83,6 +83,7 @@ public class InvitationActivity extends AppCompatActivity{
 
                     RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(InvitationActivity.this));
+                    //userId
                     DemoAdapter adapter = new DemoAdapter(invites, DB, InvitationActivity.this, userId);
                     recyclerView.setAdapter(adapter);
                 }
