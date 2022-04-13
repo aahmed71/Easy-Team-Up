@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".ViewEditProfile"
+            android:exported="false" />
+        <activity
             android:name=".ViewNotifications"
             android:exported="false" />
         <activity

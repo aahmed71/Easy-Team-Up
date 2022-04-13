@@ -14,6 +14,7 @@ public class UserPortal extends AppCompatActivity {
     Button viewMap;
     Button viewEvent;
     Button createEvent;
+    Button viewEditProfile;
     Button logOut;
     Integer userId;
     String userName;
@@ -21,7 +22,7 @@ public class UserPortal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         userId = getIntent().getIntExtra("userId", -1);
-        userName = getIntent().getStringExtra("userName");
+        //userName = getIntent().getStringExtra("userName");
         System.out.println("current userid: " + userId);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
@@ -29,6 +30,13 @@ public class UserPortal extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 logOutUser();
+            }
+        });
+
+        viewEditProfile = findViewById(R.id.viewEditProfileButton);
+        viewEditProfile.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                goToViewEditProfile();
             }
         });
 
@@ -96,7 +104,7 @@ public class UserPortal extends AppCompatActivity {
 
     public void goToCreateEvent(){
         Intent intent = new Intent(this, CreateEvent.class);
-        intent.putExtra("userName", userName);
+//        intent.putExtra("userName", userName);
         intent.putExtra("userId", userId);
         startActivity(intent);
     }
@@ -114,6 +122,12 @@ public class UserPortal extends AppCompatActivity {
 
     public void goToEvents(){
         Intent intent = new Intent(this, ListActivity.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
+    }
+
+    public void goToViewEditProfile(){
+        Intent intent = new Intent(this, ViewEditProfile.class);
         intent.putExtra("userId", userId);
         startActivity(intent);
     }

@@ -21,6 +21,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
     String eventDate;
     String eventMonth;
     String eventYear;
+    Integer userId;
     String signupDueMonth;
     int signupDueDate;
     int signupDueYear;
@@ -43,9 +44,12 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        currentUser = getIntent().getStringExtra("userName");
-        System.out.println("\n\n\n");
         System.out.println(currentUser);
+        System.out.println("User Id: " + userId);
+        userId = getIntent().getIntExtra("userId", -1);
+        System.out.println("\n\n\n In CreateEvent.java");
+        System.out.println(currentUser);
+        System.out.println("User Id: " + userId);
 
         // Event name text view
         EditText etEventName = (EditText)findViewById(R.id.editText);
@@ -130,7 +134,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                     System.out.println("event Month = " + temp3);
                     System.out.println("event Date = " + temp8);
                     System.out.println("event Year = " + temp9);
-                    System.out.println("current User = " + currentUser);
+
                     System.out.println("line 165");
 
                     Intent intent = new Intent(getApplicationContext(), CreateEventPt2.class);
@@ -142,7 +146,8 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                     intent.putExtra("eventMonth", eventMonth);
                     intent.putExtra("eventDate", eventDate);
                     intent.putExtra("eventYear", eventYear);
-                    intent.putExtra("eventCreator", currentUser);
+//                    intent.putExtra("eventCreator", currentUser);
+                    intent.putExtra("userId", userId);
                     intent.putExtra("eventDescription", eventDescription);
                     startActivity(intent);
                 }

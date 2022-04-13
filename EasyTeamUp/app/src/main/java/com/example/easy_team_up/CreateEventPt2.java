@@ -55,7 +55,8 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         eventMonth = getIntent().getStringExtra("eventMonth");
         eventDate = Integer.parseInt(removeLeadingZeroes(removeTrailingZeroes(getIntent().getStringExtra("eventDate"))));
         eventYear = Integer.parseInt(getIntent().getStringExtra("eventYear"));
-        currentUser = getIntent().getStringExtra("eventCreator");
+        userId = getIntent().getIntExtra("userId", -1);
+//        currentUser = getIntent().getStringExtra("eventCreator");
 
 
         // spinner 3 = sign up due month
@@ -140,7 +141,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                     cursor.moveToLast();
                     eventId = cursor.getInt(0);
 
-                    System.out.println("User ID QWERQWERQWER: " + inviteGuestId);
+                    System.out.println("User ID inviteGuestID in CreateEvent.java QWERQWERQWER: " + inviteGuestId);
                     DB1.addToInvitations(eventId, inviteGuestId);
 
                     System.out.println("User ID: " + userId);
@@ -148,6 +149,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 }
 
                 Intent intent = new Intent(getApplicationContext(), UserPortal.class);
+//                intent.putExtra("userName", currentUser);
                 intent.putExtra("userId", userId);
                 startActivity(intent);
             }
@@ -160,10 +162,11 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 userSearch = etUsernameSearch.getText().toString();
                 if (DB1.checkUserName(userSearch)) {
                     inviteUser = true;
+                    /*
                     Cursor cursor = DB1.getIdfromUsername(currentUser);
                     cursor.moveToLast();
-                    userId = cursor.getInt(0);
-                    System.out.println("User ID HEREREREREE: " + userId);
+                    userId = cursor.getInt(0); */
+                    System.out.println("User ID CreateNewUser.java HEREREREREE: " + userId);
 
                     Cursor cursor2 = DB1.getIdfromUsername(userSearch);
                     cursor2.moveToLast();

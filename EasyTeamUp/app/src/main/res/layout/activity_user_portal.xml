@@ -79,12 +79,12 @@
         android:text="View RSVPs and Invites" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/viewEditProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rsvpInviteButton"
         android:layout_centerInParent="true"
         android:layout_marginTop="8dp"
-        android:text="Edit Profile" />
+        android:text="View / Edit Profile" />
 
 </RelativeLayout>

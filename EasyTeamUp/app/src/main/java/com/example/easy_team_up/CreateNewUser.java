@@ -52,13 +52,13 @@ public class CreateNewUser extends AppCompatActivity {
                             if (userIdCorrect != -1) {
                                 Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
-                                intent.putExtra("userName", user);
+//                                intent.putExtra("userName", user);
 
                                 Cursor cursor = DB.getIdfromUsername(user);
                                 cursor.moveToLast();
                                 Integer userId = cursor.getInt(0);
 
-                                System.out.println("ASDFQWERQEQVASDVASGA" + userId);
+                                System.out.println("In CreateNewUser ASDFQWERQEQVASDVASGA" + userId);
                                 intent.putExtra("userId", userId);
 
                                 startActivity(intent);
