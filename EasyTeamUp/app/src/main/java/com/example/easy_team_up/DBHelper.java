@@ -117,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // insert into events database
     public void insertNewEventData(Integer userId, String eventName,
             String eventType, int eventStartTime,
@@ -210,6 +211,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getNameFromUserId(Integer userId){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users WHERE id = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+
+    public Cursor returnUserInfo (Integer id) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from users where id = ?", new String[] {String.valueOf(id)});
         return cursor;
     }
 

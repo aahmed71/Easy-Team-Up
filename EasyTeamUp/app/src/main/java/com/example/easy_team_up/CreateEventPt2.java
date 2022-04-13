@@ -144,6 +144,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                     System.out.println("User ID inviteGuestID in CreateEvent.java QWERQWERQWER: " + inviteGuestId);
                     DB1.addToInvitations(eventId, inviteGuestId);
 
+
                     System.out.println("User ID: " + userId);
                     System.out.println("Event ID: " + eventId);
                 }

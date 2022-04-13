@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewEditProfile">
+    tools:context=".ViewEditProfilePt2">
 
 
     <TextView
@@ -28,39 +28,26 @@
         android:text="Username: "
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
-
-    <TextView
-        android:id="@+id/userNameDisplayTV"
-        android:layout_width="128dp"
-        android:layout_height="21dp"
-        android:layout_centerInParent="true"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.288" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter new password"
-        android:inputType="textPersonName"
+        android:id="@+id/userNameDisplayET"
+        android:layout_width="148dp"
+        android:layout_height="36dp"
+        android:layout_centerInParent="true"
+        android:hint="Enter new username"
+        android:text=""
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <TextView
         android:id="@+id/passWordTV"
@@ -77,19 +64,19 @@
         app:layout_constraintVertical_bias="0.205" />
 
 
-
-    <TextView
-        android:id="@+id/passwordDisplayTV"
-        android:layout_width="128dp"
-        android:layout_height="21dp"
+    <EditText
+        android:id="@+id/passwordDisplayET"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:hint="Enter new Password"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.804"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <TextView
         android:id="@+id/emailTV"
@@ -104,18 +91,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.384" />
 
-    <TextView
-        android:id="@+id/emailDisplayTV"
-        android:layout_width="128dp"
-        android:layout_height="21dp"
+    <EditText
+        android:id="@+id/emailDisplayET"
+        android:layout_width="138dp"
+        android:layout_height="35dp"
+        android:hint="Enter new Email"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/ageTV"
@@ -130,25 +118,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.467" />
 
-    <TextView
-        android:id="@+id/ageDisplayTV"
-        android:layout_width="128dp"
-        android:layout_height="21dp"
+
+    <EditText
+        android:id="@+id/ageDisplayET"
+        android:layout_width="142dp"
+        android:layout_height="44dp"
+        android:hint="Edit Age"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454" />
-
+        app:layout_constraintVertical_bias="0.464" />
 
     <Button
-        android:id="@+id/buttonEditProfile"
+        android:id="@+id/buttonSubmit"
         android:layout_width="134dp"
         android:layout_height="42dp"
-        android:text="Edit Profile"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintLeft_toLeftOf="parent"
