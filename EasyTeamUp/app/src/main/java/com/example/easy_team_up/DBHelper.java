@@ -114,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // insert into events database
-    public void insertNewEventData(String username, String eventName,
+    public void insertNewEventData(Integer userId, String eventName,
             String eventType, int eventStartTime,
     int eventEndTime, String eventMonth,
     int eventDate, int eventYear,
@@ -122,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
     int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("userId", username);
+        contentValues.put("userId", userId);
         contentValues.put("eventType", eventType);
         contentValues.put("eventName", eventName);
         contentValues.put("eventStartTime", eventStartTime);
@@ -137,11 +137,18 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("privateOrPublic", privateOrPublic);
         contentValues.put("eventDescription", eventDescription);
 
-
         MyDB.insert("events", null, contentValues);
     }
 
     /*****************/
+    public void addToInvitations (Integer eventId, Integer userId) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("eventId", eventId);
+        contentValues.put("userId", userId);
+        MyDB.insert("Invitations", null, contentValues);
+    }
+
     // Insert into  login database
     public Integer insertNewUserData(String username, String password, String email, String age) {
         SQLiteDatabase MyDB = this.getWritableDatabase();

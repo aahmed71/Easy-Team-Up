@@ -36,6 +36,9 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
     String temp6;
     String temp10;
     String userSearch;
+    Integer userId;
+    Integer eventId;
+    Integer inviteGuestId;
 
 
     @Override
@@ -130,15 +133,27 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
 
 
 
-                DB1.insertNewEventData(currentUser, eventName, eventType, startTime,
+                DB1.insertNewEventData(userId, eventName, eventType, startTime,
                         endTime, eventMonth, eventDate, eventYear, signupDueMonth,
                         signupDueDate, signupDueYear, signupDueTime, publicOrPrivate, eventDescription);
                 Toast.makeText(CreateEventPt2.this, "Event Created Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
+
+                // Adding to invitations
+                if (DB1.checkUserName(userSearch)) {
+                    Cursor cursor = DB1.getMyEvents(userId);
+                    cursor.moveToLast();
+                    eventId = cursor.getInt(0);
+
+                    System.out.println("User ID QWERQWERQWER: " + inviteGuestId);
+                    DB1.addToInvitations(eventId, inviteGuestId);
+
+                    System.out.println("User ID: " + userId);
+                    System.out.println("Event ID: " + eventId);
+                }
+
+                Intent intent = new Intent(getApplicationContext(), UserPortal.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
-                //  DB1.insertNewEventData(currentUser, eventName, eventType, startTime, endTime, eventMonth, eventDate, eventYear, signupDueMonth, signupDueDate, signupDueYear, signupDueTime);
-
-
             }
         });
 
@@ -149,10 +164,15 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 userSearch = etUsernameSearch.getText().toString();
                 if (DB1.checkUserName(userSearch)) {
                     Cursor cursor = DB1.getIdfromUsername(currentUser);
-                    if (cursor.moveToFirst()) {
-                        Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
-                        //cursor.getString(cursor.getInt(1));
-                    }
+                    cursor.moveToLast();
+                    userId = cursor.getInt(0);
+                    System.out.println("User ID HEREREREREE: " + userId);
+
+                    Cursor cursor2 = DB1.getIdfromUsername(userSearch);
+                    cursor2.moveToLast();
+                    inviteGuestId = cursor2.getInt(0);
+                    System.out.println("User ID ASDFASDFASDF: " + inviteGuestId);
+                    Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(CreateEventPt2.this, "User does not exist", Toast.LENGTH_SHORT).show();

@@ -44,8 +44,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (checkUserPass != null) {
                         Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
-                        checkUserPass.moveToFirst();
-                        intent.putExtra("userId", checkUserPass.getInt(0));
+
+                        Cursor cursor = DB.getIdfromUsername(user);
+                        cursor.moveToLast();
+                        intent.putExtra("userId", cursor.getInt(0));
                         intent.putExtra("userName", user);
                         startActivity(intent);
                     }
