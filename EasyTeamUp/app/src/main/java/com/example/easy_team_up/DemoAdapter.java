@@ -66,6 +66,7 @@ class DemoVH extends RecyclerView.ViewHolder{
             System.out.println("clicking event");
         });
         //get user name
+        System.out.println("Demo Adapter UserID: " + adapter.userId);
         Cursor username = adapter.DB.getNameFromUserId(adapter.userId);
         username.moveToFirst();
         String currUser = username.getString(1);
