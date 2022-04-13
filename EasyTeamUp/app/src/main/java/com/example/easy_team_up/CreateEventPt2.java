@@ -39,6 +39,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
     Integer userId;
     Integer eventId;
     Integer inviteGuestId;
+    Boolean inviteUser = false;
 
 
     @Override
@@ -46,11 +47,6 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event_pt2);
 
-                     /*
-                Integer.parseInt(removeTrailingZeroes(removeLeadingZeroes(temp1)));
-                Integer.parseInt(removeTrailingZeroes(removeLeadingZeroes(temp2)));
-                Integer.parseInt(removeTrailingZeroes(removeLeadingZeroes(temp8)));
-                 */
         eventDescription = getIntent().getStringExtra("eventDescription");
         eventName = getIntent().getStringExtra("eventName");
         eventType = getIntent().getStringExtra("eventType");
@@ -139,7 +135,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(CreateEventPt2.this, "Event Created Successfully", Toast.LENGTH_SHORT).show();
 
                 // Adding to invitations
-                if (DB1.checkUserName(userSearch)) {
+                if (inviteUser) {
                     Cursor cursor = DB1.getMyEvents(userId);
                     cursor.moveToLast();
                     eventId = cursor.getInt(0);
@@ -163,6 +159,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 userSearch = etUsernameSearch.getText().toString();
                 if (DB1.checkUserName(userSearch)) {
+                    inviteUser = true;
                     Cursor cursor = DB1.getIdfromUsername(currentUser);
                     cursor.moveToLast();
                     userId = cursor.getInt(0);
@@ -175,6 +172,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                     Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    inviteUser = false;
                     Toast.makeText(CreateEventPt2.this, "User does not exist", Toast.LENGTH_SHORT).show();
                 }
 
