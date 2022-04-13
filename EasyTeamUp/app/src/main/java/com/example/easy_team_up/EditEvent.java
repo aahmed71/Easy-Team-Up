@@ -115,7 +115,6 @@ public class EditEvent extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String tutorialsName = parent.getItemAtPosition(position).toString();
                 date = Integer.parseInt(tutorialsName);
-//                Toast.makeText(parent.getContext(), "Selected: " + tutorialsName, Toast.LENGTH_LONG).show();
             }
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
@@ -220,6 +219,14 @@ public class EditEvent extends AppCompatActivity {
                 System.out.println(endTime);
                 DB.updateMyEvent(eventId, eventName, eventType, startTime,
                         endTime, month, date, year, eventLocation, privateOrPublic, eventDescription);
+                //create an event edited notification
+                String notification = eventName + " has been edited";
+                //add to id of everyone on invite list
+                Cursor rsvps = DB.getRSVPsByEventId(eventId);
+                //loop through all rsvps of the updated event and insert notification of event update
+                while(rsvps.moveToNext()) {
+                    DB.insertNotification(notification, rsvps.getInt(0));
+                }
                 DB.close();
                 //return to my events
                 returnToMyEvents();

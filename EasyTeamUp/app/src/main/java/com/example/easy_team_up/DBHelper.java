@@ -13,6 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table Invitations (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
         DB.execSQL("create Table RSVPs (id INTEGER PRIMARY KEY AUTOINCREMENT, eventId INT, userId INT)");
+        DB.execSQL("create Table Notifications (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, userId INT)");
         DB.execSQL("create Table Events(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INT, eventName TEXT, eventType TEXT, eventStartTime INT, " +
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
@@ -25,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Events");
         DB.execSQL("drop Table if exists RSVPs");
         DB.execSQL("drop Table if exists Users");
+        DB.execSQL("drop Table if exists Notifications");
     }
     public Boolean acceptInvitation (Invite invite)
     {
@@ -91,6 +93,26 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public Boolean deleteNotification (Integer id)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        System.out.print("Deleting notification");
+        Cursor cursor = DB.rawQuery("Select * from Notifications", null);
+        if (cursor.getCount() > 0) {
+            //delete invitation and add to rsvp
+            long deleteResult = DB.delete("Notifications", "id=?", new String[]{String.valueOf(id)});
+            if (deleteResult != -1) {
+                System.out.print("delete notification success");
+                return true;
+            } else {
+                System.out.print("delete notification fail");
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     // insert into events database
     public void insertNewEventData(Integer userId, String eventName,
             String eventType, int eventStartTime,
@@ -144,6 +166,18 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean insertNotification(String description, Integer userId){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("userId", userId);
+        contentValues.put("description", description);
+        long result = MyDB.insert("Notifications", null, contentValues);
+        if (result == -1){
+            return false;
+        }
+        return true;
+    }
+
     public Boolean checkUserName(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[] {username});
@@ -177,6 +211,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getInvitations(Integer userId) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Invitations WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+    public Cursor getNotifications(Integer userId) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Notifications WHERE userId = ?", new String[]{String.valueOf(userId)});
         return cursor;
     }
     public Cursor getMyEvents(Integer userId){
@@ -217,6 +256,12 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from RSVPs WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+    public Cursor getRSVPsByEventId(Integer eventId)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select userId from RSVPs WHERE eventId = ?", new String[]{String.valueOf(eventId)});
         return cursor;
     }
 

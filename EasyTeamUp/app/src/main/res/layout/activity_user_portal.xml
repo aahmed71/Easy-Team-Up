@@ -16,12 +16,21 @@
         android:textSize="32sp" />
 
     <Button
+        android:id="@+id/notificationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/portal"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100sp"
+        android:layout_marginBottom="20sp"
+        android:text="View Notifications" />
+
+    <Button
             android:id="@+id/logOutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/portal"
+            android:layout_below="@+id/notificationsButton"
             android:layout_centerInParent="true"
-            android:layout_marginTop="150sp"
             android:layout_marginBottom="20sp"
             android:text="Log Out" />
 

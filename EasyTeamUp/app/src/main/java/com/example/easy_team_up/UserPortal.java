@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class UserPortal extends AppCompatActivity {
+    Button viewNotifications;
     Button rsvpInvites;
     Button manageEvents;
     Button viewMap;
@@ -30,6 +31,14 @@ public class UserPortal extends AppCompatActivity {
                 logOutUser();
             }
         });
+
+        viewNotifications = findViewById(R.id.notificationsButton);
+        viewNotifications.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                goToNotifications();
+            }
+        });
+
         rsvpInvites = findViewById(R.id.rsvpInviteButton);
         rsvpInvites.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -65,6 +74,13 @@ public class UserPortal extends AppCompatActivity {
         });
 
     }
+
+    public void goToNotifications(){
+        Intent intent = new Intent(this, ViewNotifications.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
+    }
+
     public void logOutUser(){
         Intent intent = new Intent(this, LoginActivity.class);
         System.out.println("logging out user");
