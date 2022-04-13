@@ -10,11 +10,13 @@ public class Event2 {
     private int userID;
     private int eventID;
 
-    public Event2(String name, String desc, String address, LocalTime time){
+    public Event2(String name, String desc, String address, LocalTime time, int userID, int eventID){
         this.name = name;
         this.desc = desc;
         this.address = address;
         this.time = time;
+        this.userID = userID;
+        this.eventID = eventID;
     }
 
     public String getName() {

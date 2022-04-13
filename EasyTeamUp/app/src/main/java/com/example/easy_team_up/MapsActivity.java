@@ -54,9 +54,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         ArrayList<Event2> events = new ArrayList<Event2>();
         events.add(new Event2("Study", "Studying for midterms.",
-                "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43)));
+                "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43), 1 ,1));
         events.add(new Event2("Birthday", "Bob's birthday.",
-                "3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50)));
+                "3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50), 1, 1));
 
         Geocoder geocoder = new Geocoder(this);
         // Iterate through events and place marker

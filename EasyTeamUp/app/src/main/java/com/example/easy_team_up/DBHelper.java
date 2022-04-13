@@ -23,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
         DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, age INT)");
         DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123')");
+        DB.execSQL("insert into Events (userId, eventName, eventType, eventStartTime, privateOrPublic, location) VALUES (2, 'Project Discussion','Study', '11:00', 'public', '3115 Orchard Avenue')");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
@@ -31,6 +32,14 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists RSVPs");
         DB.execSQL("drop Table if exists Users");
         DB.execSQL("drop Table if exists Notifications");
+    }
+
+    public void addEventToRSVP(Event2 event){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("userId", event.getUserID());
+        contentValues.put("eventId", event.getEventID());
+        DB.insert("RSVPs", null, contentValues);
     }
     public Boolean acceptInvitation (Invite invite)
     {
@@ -147,8 +156,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("signupDueTime", signupDueTime);
         contentValues.put("privateOrPublic", privateOrPublic);
         contentValues.put("eventDescription", eventDescription);
-
-        MyDB.insert("events", null, contentValues);
     }
 
     /*****************/
@@ -232,6 +239,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getMyEvents(Integer userId){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Events WHERE userId = ?", new String[]{String.valueOf(userId)});
+        return cursor;
+    }
+
+    public Cursor getPublicEvents(){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Events WHERE privateOrPublic = ?", new String[]{"public"});
         return cursor;
     }
 
