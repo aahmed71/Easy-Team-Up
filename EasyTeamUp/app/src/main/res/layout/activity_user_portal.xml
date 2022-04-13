@@ -61,11 +61,21 @@
         android:layout_marginBottom="20sp"
         android:text="Manage My Events" />
 
-        <Button
-            android:id="@+id/rsvpInviteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/manageEvents"
-            android:layout_centerInParent="true"
-            android:text="View RSVPs and Invites" />
+    <Button
+        android:id="@+id/rsvpInviteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/manageEvents"
+        android:layout_centerInParent="true"
+        android:text="View RSVPs and Invites" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rsvpInviteButton"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:text="Edit Profile" />
+
 </RelativeLayout>
