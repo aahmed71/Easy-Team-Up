@@ -130,7 +130,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                     System.out.println("event Month = " + temp3);
                     System.out.println("event Date = " + temp8);
                     System.out.println("event Year = " + temp9);
-                    System.out.println("creator = " + currentUser);
+                    System.out.println("current User = " + currentUser);
                     System.out.println("line 165");
 
                     Intent intent = new Intent(getApplicationContext(), CreateEventPt2.class);

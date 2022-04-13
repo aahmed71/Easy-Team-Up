@@ -1,6 +1,7 @@
 package com.example.easy_team_up;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,11 +48,19 @@ public class CreateNewUser extends AppCompatActivity {
                     if (pass.equals(repass)) {
                         Boolean checkuser = DB.checkUserName(user);
                         if (checkuser == false) {
-                            Integer userId = DB.insertNewUserData(user, pass, email, age);
-                            if (userId != -1) {
+                            Integer userIdCorrect = DB.insertNewUserData(user, pass, email, age);
+                            if (userIdCorrect != -1) {
                                 Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
+                                intent.putExtra("userName", user);
+
+                                Cursor cursor = DB.getIdfromUsername(user);
+                                cursor.moveToLast();
+                                Integer userId = cursor.getInt(0);
+
+                                System.out.println("ASDFQWERQEQVASDVASGA" + userId);
                                 intent.putExtra("userId", userId);
+
                                 startActivity(intent);
                             }
                             else {
@@ -69,12 +78,12 @@ public class CreateNewUser extends AppCompatActivity {
 
             }
         });
-        // Just random changes so that i can push this again
 
         returnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
                 startActivity(intent);
             }
         });

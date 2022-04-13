@@ -171,7 +171,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                     Cursor cursor2 = DB1.getIdfromUsername(userSearch);
                     cursor2.moveToLast();
                     inviteGuestId = cursor2.getInt(0);
-                    System.out.println("User ID ASDFASDFASDF: " + inviteGuestId);
+                    System.out.println("User ID in creatEventPart2 ASDFASDFASDF: " + inviteGuestId);
                     Toast.makeText(CreateEventPt2.this, "Invitation Sent!", Toast.LENGTH_SHORT).show();
                 }
                 else {
