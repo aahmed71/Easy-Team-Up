@@ -48,8 +48,33 @@ public class CreateNewUserBlackBoxTest {
         onView(withHint("Age")).check(matches(isDisplayed()));
     }
     @Test
-    public void succesfulLogin () {
+    public void succesfulUserCreation () {
+        onView(withHint("User Name")).perform(typeText("New User"));
+        onView(withHint("Password")).perform(typeText("123"));
+        onView(withHint("Retype Password")).perform(typeText("123"));
+        onView(withHint("Email")).perform(typeText("example@email.com"));
+        onView(withHint("Age")).perform(typeText("21"));
+        closeSoftKeyboard();
+
+        onView(allOf(withText("Register"))).perform(click());
+        onView(withText("User Portal")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void duplicateUserNameFail () {
         onView(withHint("User Name")).perform(typeText("belle"));
+        onView(withHint("Password")).perform(typeText("123"));
+        onView(withHint("Retype Password")).perform(typeText("123"));
+        onView(withHint("Email")).perform(typeText("123"));
+        onView(withHint("Age")).perform(typeText("21"));
+        closeSoftKeyboard();
+
+        onView(allOf(withText("Register"))).perform(click());
+        onView(withText("User Portal")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void unsuccesfulUserCreation () {
         onView(withHint("Password")).perform(typeText("belle"));
         onView(withHint("Email")).perform(typeText("belle"));
         onView(withHint("Age")).perform(typeText("21"));
