@@ -38,7 +38,7 @@ public class ListActivityBlackBoxTest {
 
     @Test
     public void eventDisplayed () {
-        onView(allOf(withText("Project Discussion"))).check(matches(isDisplayed()));
+        onView(allOf(withText("Event 1"))).check(matches(isDisplayed()));
     }
     @Test
     public void buttonDisplayed () {
@@ -47,8 +47,8 @@ public class ListActivityBlackBoxTest {
 
     @Test
     public void eventClicked(){
-        onView(allOf(withText("Project Discussion"))).perform(click());
-        onView(withText("Project Discussion")).check(matches(isDisplayed()));
+        onView(allOf(withText("Event 1"))).perform(click());
+        onView(withText("Event 1")).check(matches(isDisplayed()));
     }
 
     @Test
