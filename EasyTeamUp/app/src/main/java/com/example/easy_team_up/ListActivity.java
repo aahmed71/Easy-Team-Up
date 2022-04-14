@@ -37,7 +37,7 @@ public class ListActivity extends AppCompatActivity {
         Cursor res = DB.getPublicEvents();
         while(res.moveToNext()){
             //invite user event title
-            LocalTime time = LocalTime.parse(res.getString(4));
+            LocalTime time = LocalTime.of(res.getInt(4), 0);
             Event2 invite = new Event2(res.getString(2), res.getString(3), res.getString(14), time, res.getInt(1), res.getInt(0));
             invites.add(invite);
         }

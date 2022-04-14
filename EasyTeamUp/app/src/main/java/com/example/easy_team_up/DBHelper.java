@@ -28,8 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("insert into Events (id, userId, eventName, eventType, eventStartTime, eventEndTime, eventMonth, eventDate, " +
                 "EventYear, signupDueMonth, signupDueDate, signupDueYear, signupDueTime, privateOrPublic, eventDescription, location) " +
                 "VALUES (0, 4, 'Event 1', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'USC'), " +
-                "(1, 4, 'Event 2', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'Library')," +
-                "(2, 1, 'Event 3', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'Library')");
+                "(1, 4, 'Event 2', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'Group Study session', '3115 Orchard Ave., Los Angeles, CA 90007')," +
+                "(2, 1, 'Event 3', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'Working on project', '651 W 35th St, Los Angeles, CA 90089')");
         DB.execSQL("insert into Invitations (eventId, userId) values (0, 4), (1, 4), (2, 5)");
         DB.execSQL("insert into RSVPs (eventId, userId) values (2, 4)");
         DB.execSQL("insert into Notifications (description, userId) values ('Test Notification', 4)");
