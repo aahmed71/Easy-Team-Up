@@ -5,7 +5,14 @@ import org.junit.After;
 import org.junit.Before;
 
 import static org.junit.Assert.*;
+
 import android.content.Context;
+import android.os.Looper;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.junit.Test;
 import android.database.Cursor;
 
 /**
@@ -15,12 +22,19 @@ import android.database.Cursor;
  */
 public class ManageInvitesAndRSVPsTest {
     DBHelper db;
-    Context c;
+    private Looper mLooper;
+
+    @Mock
+    private Context mContext;
 
     @Before
-    public void createDBInstance() {
-        db = new DBHelper(c);
+    public void setup(){
+        mLooper = mock(Looper.class);
+        Context ctx = mock(Context.class);
+        when(ctx.getMainLooper()).thenReturn(mLooper);
+        db = new DBHelper(mContext);
     }
+
     @Test
     public void manageInvites(){
         Cursor beforeInvites = db.getInvitations(4);
