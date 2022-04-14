@@ -7,19 +7,19 @@
     tools:context=".CreateNewUser">
 
     <EditText
-        android:id = "@+id/username"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:hint = "User Name"
-        android:layout_marginTop = "50dp" />
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="User Name" />
 
     <EditText
-        android:id = "@+id/password"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:hint = "Password"
-        android:layout_marginTop = "50dp"
-        android:layout_below = "@+id/username"/>
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="50dp"
+        android:hint="Password" />
 
 
     <EditText
@@ -52,9 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/repassword"
-        android:hint = "Email"
         android:layout_marginTop="35dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textEmailAddress" />
 
     <EditText
