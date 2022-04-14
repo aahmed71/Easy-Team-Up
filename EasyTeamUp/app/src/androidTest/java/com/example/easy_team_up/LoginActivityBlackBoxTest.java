@@ -25,11 +25,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class CreateNewUserBlackBoxTest {
+public class LoginActivityBlackBoxTest {
 
     @Rule
     //private static final String TAG = CreateNewUser.class.getSimpleName();
-    public ActivityScenarioRule<CreateNewUser> createNewUserTest = new ActivityScenarioRule<CreateNewUser>(CreateNewUser.class);
+    public ActivityScenarioRule<LoginActivity> createNewUserTest = new ActivityScenarioRule<LoginActivity>(LoginActivity.class);
 
     @Test
     public void textDisplayed () {
@@ -40,22 +40,48 @@ public class CreateNewUserBlackBoxTest {
         onView(withHint("Password")).check(matches(isDisplayed()));
     }
     @Test
-    public void textDisplayed2 () {
-        onView(withHint("Email")).check(matches(isDisplayed()));
+    public void buttonDisplayed () {
+        onView(allOf(withText("Sign in"))).check(matches(isDisplayed()));
     }
     @Test
-    public void textDisplayed3 () {
-        onView(withHint("Age")).check(matches(isDisplayed()));
+    public void buttonClickLogin () {
+        onView(allOf(withText("Sign in"))).perform(click());
+    }
+    @Test
+    public void buttonClick () {
+        onView(allOf(withText("Sign Up"))).perform(click());
     }
     @Test
     public void succesfulLogin () {
         onView(withHint("User Name")).perform(typeText("belle"));
-        onView(withHint("Password")).perform(typeText("belle"));
-        onView(withHint("Email")).perform(typeText("belle"));
-        onView(withHint("Age")).perform(typeText("21"));
+        onView(withHint("Password")).perform(typeText("123"));
         closeSoftKeyboard();
 
-        onView(allOf(withText("Register"))).perform(click());
+        onView(allOf(withText("Sign in"))).perform(click());
         onView(withText("User Portal")).check(matches(isDisplayed()));
+    }
+
+    // Test should fail
+    @Test
+    public void invalidUsername () {
+        onView(withHint("User Name")).perform(typeText("invalid"));
+        onView(withHint("Password")).perform(typeText("123"));
+        closeSoftKeyboard();
+
+        onView(allOf(withText("Sign in"))).perform(click());
+        onView(withText("User Portal")).check(matches(isDisplayed()));
+    }
+
+    // This test should fail
+    @Test
+    public void unsuccesfulLogin () {
+        onView(withHint("User Name")).perform(typeText("belle"));
+        onView(withHint("Password")).perform(typeText("000"));
+        closeSoftKeyboard();
+
+        onView(allOf(withText("Sign in"))).perform(click());
+        onView(withText("User Portal")).check(matches(isDisplayed()));
+
+        //onView(allOf(withText("Login"))).perform(click());
     }
 }
