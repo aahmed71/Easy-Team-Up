@@ -29,8 +29,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationVH>{
 
     @Override
     public void onBindViewHolder(@NonNull NotificationVH holder, int position) {
-//        holder.textView.setText(notifications.get(position).description);
-        holder.textView.setText("hi");
+        holder.textView.setText(notifications.get(position).description);
+//        holder.textView.setText("hi");
     }
 
     @Override
@@ -44,11 +44,17 @@ class NotificationVH extends RecyclerView.ViewHolder{
     private NotificationAdapter adapter;
     public NotificationVH(@NonNull View itemView){
         super(itemView);
-        textView = itemView.findViewById(R.id.description);
+        textView = itemView.findViewById(R.id.notificationText);
         //go to update event page
 //        itemView.findViewById(R.id.returnUser).setOnClickListener(view -> {
 //            //return to user portal
 //        });
+        itemView.findViewById(R.id.deleteNotification).setOnClickListener(view -> {
+            //call database and delete notification
+            adapter.DB.deleteNotification(adapter.notifications.get(getAdapterPosition()).id);
+            adapter.notifications.remove(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());
+        });
     }
     public NotificationVH linkAdapter(NotificationAdapter adapter){
         this.adapter = adapter;

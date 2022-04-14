@@ -22,8 +22,8 @@ public class UserPortal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         userId = getIntent().getIntExtra("userId", -1);
-        //userName = getIntent().getStringExtra("userName");
-        System.out.println("current userid: " + userId);
+        userName = getIntent().getStringExtra("userName");
+        System.out.println("current userid in user portal: " + userId);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
         logOut = findViewById(R.id.logOutButton);
@@ -104,7 +104,7 @@ public class UserPortal extends AppCompatActivity {
 
     public void goToCreateEvent(){
         Intent intent = new Intent(this, CreateEvent.class);
-//        intent.putExtra("userName", userName);
+        intent.putExtra("userName", userName);
         intent.putExtra("userId", userId);
         startActivity(intent);
     }

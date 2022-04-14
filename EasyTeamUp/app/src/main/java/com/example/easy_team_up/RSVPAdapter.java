@@ -66,7 +66,25 @@ class RSVPvh extends RecyclerView.ViewHolder{
         //deleting invitation
         itemView.findViewById(R.id.deleteRSVP).setOnClickListener(view -> {
             //call database and delete rsvp
-            adapter.DB.deleteRSVP(adapter.rsvps.get(getAdapterPosition()));
+            Invite rsvp = adapter.rsvps.get(getAdapterPosition());
+            adapter.DB.deleteRSVP(rsvp);
+
+            Cursor username = adapter.DB.getNameFromUserId(adapter.userId);
+            username.moveToFirst();
+            String currUser = username.getString(1);
+            System.out.println(currUser);
+            //adding reject invite notification
+
+            //get event from eventId and get organizer id
+            Cursor event = adapter.DB.getEventById(rsvp.eventId);
+            String eventName = event.getString(2);
+            String removeRSVP = currUser + " removed from " + eventName + ".";
+            event.moveToFirst();
+            //idx 1 is userId of organizer
+            Integer organizer = event.getInt(1);
+            //create reject notification
+            adapter.DB.insertNotification(removeRSVP, organizer);
+
             adapter.rsvps.remove(getAdapterPosition());
             adapter.notifyItemRemoved(getAdapterPosition());
         });
