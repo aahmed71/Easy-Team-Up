@@ -26,7 +26,7 @@ public class ManageInvitationsBlackBoxTest {
     @Rule
     public ActivityScenarioRule<LoginActivity> logIn = new ActivityScenarioRule<>(LoginActivity.class);
     @Test
-    public void myEventsDisplayed () {
+    public void ViewMyEvents () {
         onView(withHint("User Name")).perform(typeText("testUser3"));
         onView(withHint("Password")).perform(typeText("123"));
         onView(withText("Sign in")).perform(click());
@@ -46,7 +46,7 @@ public class ManageInvitationsBlackBoxTest {
         onView(withText("Log Out")).perform(click());
     }
     @Test
-    public void myInvites () {
+    public void ViewMyInvites () {
         onView(withHint("User Name")).perform(typeText("testUser3"));
         onView(withHint("Password")).perform(typeText("123"));
         onView(withText("Sign in")).perform(click());
@@ -66,7 +66,7 @@ public class ManageInvitationsBlackBoxTest {
         onView(withText("Log Out")).perform(click());
     }
     @Test
-    public void myRSVPs () {
+    public void ViewMyRSVPs () {
         onView(withHint("User Name")).perform(typeText("testUser3"));
         onView(withHint("Password")).perform(typeText("123"));
         onView(withText("Sign in")).perform(click());
@@ -85,7 +85,7 @@ public class ManageInvitationsBlackBoxTest {
         onView(withText("Log Out")).perform(click());
     }
     @Test
-    public void acceptInvitation () {
+    public void AcceptMyInvitation () {
         onView(withHint("User Name")).perform(typeText("testUser4"));
         onView(withHint("Password")).perform(typeText("123"));
         onView(withText("Sign in")).perform(click());
@@ -103,7 +103,7 @@ public class ManageInvitationsBlackBoxTest {
         onView(withText("Log Out")).perform(click());
     }
     @Test
-    public void manageMyNotifications () {
+    public void ManageMyNotification () {
         onView(withHint("User Name")).perform(typeText("testUser3"));
         onView(withHint("Password")).perform(typeText("123"));
         onView(withText("Sign in")).perform(click());
