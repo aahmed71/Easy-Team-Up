@@ -33,6 +33,7 @@ public class InvitationActivity extends AppCompatActivity{
             Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
             invites.add(invite);
         }
+        System.out.println( invites.size());
         //end snippet
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

@@ -32,7 +32,7 @@ public class ViewNotifications extends AppCompatActivity {
         Cursor res = DB.getNotifications(userId);
         while(res.moveToNext()){
             //id title userid place: event class: id user title
-            Notification n = new Notification(res.getInt(0), res.getInt(1), res.getString(2));
+            Notification n = new Notification(res.getInt(0), res.getInt(2), res.getString(1));
             notifications.add(n);
         }
         //end snippet

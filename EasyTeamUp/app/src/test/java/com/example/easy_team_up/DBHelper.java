@@ -5,11 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 public class DBHelper extends SQLiteOpenHelper {
-    public DBHelper(Context context) {
+    public DBHelper(InvitationActivity context) {
         super(context, "database", null, 1);
     }
     @Override
@@ -210,12 +207,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getNameFromUserId(Integer userId){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users WHERE id = ?", new String[]{String.valueOf(userId)});
-        return cursor;
-    }
-
-    public Cursor returnUserInfo (Integer id) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where id = ?", new String[] {String.valueOf(id)});
         return cursor;
     }
 
