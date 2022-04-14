@@ -23,8 +23,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 "eventEndTime INT, eventMonth TEXT, eventDate INT, eventYear INT, signupDueMonth TEXT,signupDueDate INT,  signupDueYear INT, signupDueTime INT, " +
                 "privateOrPublic TEXT, eventDescription TEXT, location TEXT)");
         DB.execSQL("create Table Users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, age INT)");
-        DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123'), ('testUser3', '123')");
-        DB.execSQL("insert into Events (userId, eventName, eventType, eventStartTime, privateOrPublic, location) VALUES (2, 'Project Discussion','Study', '11:00', 'public', '3115 Orchard Avenue')");
+        DB.execSQL("insert into Users (username, password) VALUES ('belle', '123'), ('Bob', '123'), ('Cora', '123'), " +
+                "('testUser3', '123'), ('testUser4', '123')");
+        DB.execSQL("insert into Events (id, userId, eventName, eventType, eventStartTime, eventEndTime, eventMonth, eventDate, " +
+                "EventYear, signupDueMonth, signupDueDate, signupDueYear, signupDueTime, privateOrPublic, eventDescription, location) " +
+                "VALUES (0, 4, 'Event 1', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'USC'), " +
+                "(1, 4, 'Event 2', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'Library')," +
+                "(2, 1, 'Event 3', 'study', 6, 7, 1, 1, 2022, 2, 2, 2022, 5, 'public', 'asdf', 'Library')");
+        DB.execSQL("insert into Invitations (eventId, userId) values (0, 4), (1, 4), (2, 5)");
+        DB.execSQL("insert into RSVPs (eventId, userId) values (2, 4)");
+        DB.execSQL("insert into Notifications (description, userId) values ('Test Notification', 4)");
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
