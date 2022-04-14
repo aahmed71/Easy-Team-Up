@@ -156,6 +156,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("signupDueTime", signupDueTime);
         contentValues.put("privateOrPublic", privateOrPublic);
         contentValues.put("eventDescription", eventDescription);
+
+        MyDB.insert("Events", null, contentValues);
     }
 
     /*****************/
