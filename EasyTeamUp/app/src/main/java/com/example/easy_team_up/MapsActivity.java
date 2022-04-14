@@ -3,6 +3,7 @@ package com.example.easy_team_up;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -52,11 +53,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         ArrayList<Event2> events = new ArrayList<Event2>();
-        events.add(new Event2("Study", "Studying for midterms.",
-                "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43), 1 ,1));
-        events.add(new Event2("Birthday", "Bob's birthday.",
-                "3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50), 1, 1));
+        DBHelper DB = new DBHelper(this);
+        //want grab from database here: need to pass in the userid
+
+        //try id that doesnt exist
+        Cursor res = DB.getPublicEvents();
+        while(res.moveToNext()){
+            //invite user event title
+            LocalTime time = LocalTime.of(res.getInt(4), 0);
+            Event2 invite = new Event2(res.getString(2), res.getString(14), res.getString(15), time, res.getInt(1), res.getInt(0));
+            events.add(invite);
+        }
+        //events.add(new Event2("Study", "Studying for midterms.",
+        //        "3115 Orchard Avenue, Los Angeles, CA", LocalTime.of(10,43), 1 ,1));
+        //events.add(new Event2("Birthday", "Bob's birthday.",
+                //"3335 S Figueroa St, Los Angeles, CA", LocalTime.of(9,50), 1, 1));
 
         Geocoder geocoder = new Geocoder(this);
         // Iterate through events and place marker

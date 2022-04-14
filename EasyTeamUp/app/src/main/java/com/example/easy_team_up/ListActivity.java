@@ -38,7 +38,7 @@ public class ListActivity extends AppCompatActivity {
         while(res.moveToNext()){
             //invite user event title
             LocalTime time = LocalTime.of(res.getInt(4), 0);
-            Event2 invite = new Event2(res.getString(2), res.getString(3), res.getString(14), time, res.getInt(1), res.getInt(0));
+            Event2 invite = new Event2(res.getString(2), res.getString(14), res.getString(15), time, res.getInt(1), res.getInt(0));
             invites.add(invite);
         }
         //end snippet
