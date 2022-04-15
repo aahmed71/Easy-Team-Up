@@ -28,7 +28,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
     int signupDueTime;
     String currentUser;
     String eventDescription;
-    String publicOrPrivate;
+    String location;
 
     String temp;
     String temp1;
@@ -53,6 +53,9 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
 
         // Event name text view
         EditText etEventName = (EditText)findViewById(R.id.editText);
+
+        // Event location
+        EditText etLocation = (EditText)findViewById(R.id.editText2);
         // Event description text view
         EditText etEventDescription = (EditText)findViewById(R.id.editText3);
         // spinner = event type
@@ -109,6 +112,8 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
 
                 eventDescription = etEventDescription.getText().toString();
 
+                location = etLocation.getText().toString();
+
                 eventType = temp;
 
                 startTime = temp1;
@@ -124,10 +129,14 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                 if (eventName.equals("") || eventDescription.equals("")) {
                     Toast.makeText(CreateEvent.this, "Please fill in Event Name and/or Event Description", Toast.LENGTH_SHORT).show();
                 }
+                if (location.equals("")) {
+                    Toast.makeText(CreateEvent.this, "Please fill in Location", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     System.out.println("HEREERER");
                     System.out.println("Eventname = " + eventName);
                     System.out.println("event type = " + temp);
+                    System.out.println("event Location = " + location);
                     System.out.println("event start time = " + temp1);
                     //System.out.println("event start time = " + startTime);
                     System.out.println("event end time = " + temp2);
@@ -140,6 +149,7 @@ public class CreateEvent extends AppCompatActivity implements AdapterView.OnItem
                     Intent intent = new Intent(getApplicationContext(), CreateEventPt2.class);
 
                     intent.putExtra("eventName", eventName);
+                    intent.putExtra("location", location);
                     intent.putExtra("eventType", eventType);
                     intent.putExtra("eventStartTime", startTime);
                     intent.putExtra("eventEndTime", endTime);

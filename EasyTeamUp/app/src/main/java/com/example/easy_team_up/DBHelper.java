@@ -142,7 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
     int eventEndTime, String eventMonth,
     int eventDate, int eventYear,
     String signupDueMonth, int signupDueDate,
-    int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription) {
+    int signupDueYear, int signupDueTime, String privateOrPublic, String eventDescription, String location) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //create new event date, start timestamp, end timestamp, signup due date, signup due time
@@ -166,6 +166,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("signupDueTime", signupDueTime);
         contentValues.put("privateOrPublic", privateOrPublic);
         contentValues.put("eventDescription", eventDescription);
+        contentValues.put("location", location);
 
         MyDB.insert("Events", null, contentValues);
     }

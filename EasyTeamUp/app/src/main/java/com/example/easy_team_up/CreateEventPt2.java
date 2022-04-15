@@ -23,6 +23,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
     int endTime;
     int eventDate;
     String eventMonth;
+    String location;
     int eventYear;
     String signupDueMonth;
     int signupDueDate;
@@ -47,6 +48,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event_pt2);
 
+        location = getIntent().getStringExtra("location");
         eventDescription = getIntent().getStringExtra("eventDescription");
         eventName = getIntent().getStringExtra("eventName");
         eventType = getIntent().getStringExtra("eventType");
@@ -114,6 +116,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
                 publicOrPrivate = temp10;
 
                 System.out.println("Event Type is set to " + eventType);
+                System.out.println("Event Location " + location);
                 System.out.println("Start time is set to " + startTime);
                 System.out.println("End time is set to " + endTime);
                 System.out.println("Event month: " + eventMonth);
@@ -132,7 +135,7 @@ public class CreateEventPt2 extends AppCompatActivity implements AdapterView.OnI
 
                 DB1.insertNewEventData(userId, eventName, eventType, startTime,
                         endTime, eventMonth, eventDate, eventYear, signupDueMonth,
-                        signupDueDate, signupDueYear, signupDueTime, publicOrPrivate, eventDescription);
+                        signupDueDate, signupDueYear, signupDueTime, publicOrPrivate, eventDescription, location);
                 Toast.makeText(CreateEventPt2.this, "Event Created Successfully", Toast.LENGTH_SHORT).show();
 
                 // Adding to invitations
