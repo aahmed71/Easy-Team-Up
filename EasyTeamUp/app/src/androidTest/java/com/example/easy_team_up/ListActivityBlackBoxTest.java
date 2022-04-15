@@ -28,7 +28,6 @@ import org.junit.runner.RunWith;
 public class ListActivityBlackBoxTest {
 
     @Rule
-    //private static final String TAG = CreateNewUser.class.getSimpleName();
     public ActivityScenarioRule<ListActivity> createNewUserTest = new ActivityScenarioRule<ListActivity>(ListActivity.class);
 
     @Test

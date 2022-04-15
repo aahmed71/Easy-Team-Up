@@ -266,6 +266,48 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void updateProfile (Integer userId, String username, String password, String email, String age) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        ContentValues contentValues1 = new ContentValues();
+        ContentValues contentValues2 = new ContentValues();
+        ContentValues contentValues3 = new ContentValues();
+        Integer age1;
+        if (!username.equals("")) {
+            contentValues.put("username", username);
+            DB.update("Users", contentValues, "id=?", new String[]{String.valueOf(userId)});
+        }
+        if (!password.equals("")) {
+            contentValues1.put("password", password);
+            DB.update("Users", contentValues1, "id=?", new String[]{String.valueOf(userId)});
+        }
+        if (!email.equals("")) {
+            contentValues2.put("email", email);
+            DB.update("Users", contentValues2, "id=?", new String[]{String.valueOf(userId)});
+        }
+        if (!age.equals("")) {
+            age1 = Integer.parseInt(age);
+            contentValues3.put("age", age1);
+            DB.update("Users", contentValues3, "id=?", new String[]{String.valueOf(userId)});
+        }
+        /*
+        Cursor cursor = DB.rawQuery("Select * from Users where id = ?", new String[]{String.valueOf(userId)});
+        if (cursor.getCount() > 0) {
+            long result = DB.update("Users", contentValues, "id=?", new String[]{String.valueOf(userId)});
+            if (result == -1) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            return false;
+        } */
+
+
+    }
+
     public Boolean updateMyEvent(Integer eventId, String eventName, String eventType, Integer startTime,
                                  Integer endTime, String month, Integer date, Integer year, String location, String privateEvent, String description)
     {
