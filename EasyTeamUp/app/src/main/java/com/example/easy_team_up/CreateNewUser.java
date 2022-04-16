@@ -50,8 +50,8 @@ public class CreateNewUser extends AppCompatActivity {
                         if (checkuser == false) {
                             Integer userIdCorrect = DB.insertNewUserData(user, pass, email, age);
                             if (userIdCorrect != -1) {
-                                Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent  = new Intent(getApplicationContext(), UserPortal.class);
+                               // Toast.makeText(CreateNewUser.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent  = new Intent(getApplicationContext(), profileImage.class);
 //                                intent.putExtra("userName", user);
 
                                 Cursor cursor = DB.getIdfromUsername(user);

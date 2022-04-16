@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/repassword"
         android:layout_marginTop="287dp"
-        android:text="Register" />
+        android:text="Next" />
 
     <Button
         android:id="@+id/btnLogin2"
