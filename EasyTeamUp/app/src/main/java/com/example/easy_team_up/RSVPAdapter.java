@@ -77,7 +77,9 @@ class RSVPvh extends RecyclerView.ViewHolder{
 
             //get event from eventId and get organizer id
             Cursor event = adapter.DB.getEventById(rsvp.eventId);
+            event.moveToFirst();
             String eventName = event.getString(2);
+            System.out.println("event name: " + eventName);
             String removeRSVP = currUser + " removed from " + eventName + ".";
             event.moveToFirst();
             //idx 1 is userId of organizer

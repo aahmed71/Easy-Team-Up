@@ -33,9 +33,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
     public void onBindViewHolder(@NonNull DemoVH holder, int position) {
         Integer eventId = invites.get(position).eventId;
         Cursor event = DB.getEventById(eventId);
-        event.moveToFirst();
         if(event.getCount() > 0) {
-            System.out.println(event.getString(2));
+            event.moveToFirst();
+            System.out.println("Event name: " + event.getString(2));
             holder.textView.setText(event.getString(2));
         }
     }
@@ -69,7 +69,6 @@ class DemoVH extends RecyclerView.ViewHolder{
         //deleting invitation
         itemView.findViewById(R.id.delete).setOnClickListener(view -> {
             //call database and delete
-            System.out.print("hi delete");
             Invite invite = adapter.invites.get(getAdapterPosition());
             adapter.DB.deleteInvitation(invite);
 
@@ -80,6 +79,7 @@ class DemoVH extends RecyclerView.ViewHolder{
             //adding reject invite notification
 
             String rejectInvitation = currUser + " has rejected your invitation.";
+            System.out.println(rejectInvitation);
             //get event from eventId and get organizer id
             Cursor event = adapter.DB.getEventById(invite.eventId);
             event.moveToFirst();
@@ -94,7 +94,6 @@ class DemoVH extends RecyclerView.ViewHolder{
         //accepting invitation
         itemView.findViewById(R.id.accept).setOnClickListener(view -> {
             //call database and delete
-            System.out.print("hi accept");
             Invite invite = adapter.invites.get(getAdapterPosition());
 
             Cursor username = adapter.DB.getNameFromUserId(adapter.userId);
@@ -102,6 +101,7 @@ class DemoVH extends RecyclerView.ViewHolder{
             String currUser = username.getString(1);
             System.out.println(currUser);
             String acceptInvitation = currUser + " has accepted your invitation.";
+            System.out.println(acceptInvitation);
             //get event from eventId and get organizer id
             Cursor event = adapter.DB.getEventById(invite.eventId);
             event.moveToFirst();

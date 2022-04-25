@@ -29,8 +29,9 @@ public class InvitationActivity extends AppCompatActivity{
         //want grab from database here: need to pass in the userid
         Cursor res = DB.getInvitations(userId);
         while(res.moveToNext()){
-            //invite user event title
+            //invite user event ids
             Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
+
             invites.add(invite);
         }
         System.out.println( invites.size());
