@@ -22,10 +22,5 @@ public class EventActivity extends AppCompatActivity {
         TextView descText = (TextView)findViewById(R.id.desc);
         descText.setText(getIntent().getStringExtra("desc"));
 
-        //        findViewById(R.id.add).setOnClickListener(view ->{
-//            items.add(data[counter%3]);
-//            counter++;
-//            adapter.notifyItemInserted(items.size()-1);
-//        });
     }
 }

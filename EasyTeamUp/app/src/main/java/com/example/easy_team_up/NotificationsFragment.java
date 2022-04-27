@@ -1,4 +1,4 @@
-package com.example.easy_team_up.ui.notifications;
+package com.example.easy_team_up;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

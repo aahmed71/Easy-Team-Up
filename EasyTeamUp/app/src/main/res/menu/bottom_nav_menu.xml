@@ -15,8 +15,15 @@
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_my_events" />
 
-
+    <item
+        android:id="@+id/navigation_create_event"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="@string/tile_create_event" />
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:title="@string/title_logout" />
 
 </menu>

@@ -49,7 +49,7 @@ class PublicVH extends RecyclerView.ViewHolder{
             i.putExtra("name", event.getName());
             i.putExtra("desc", event.getDesc());
             i.putExtra("address", event.getAddress());
-            i.putExtra("time", event.getTime().toString());
+            i.putExtra("time", event.getEventStart());
             c.startActivity(i);
         });
     }

@@ -2,5 +2,8 @@
     <string name="app_name">Easy-Team-Up</string>
     <string name="title_maps">Map</string>
     <string name="title_list">Public List</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_my_events">My Events</string>
+    <string name="tile_create_event">Create Event</string>
+    <string name="title_logout">Logout</string>
+
 </resources>

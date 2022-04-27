@@ -19,7 +19,12 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.easy_team_up.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.example.easy_team_up.NotificationsFragment"
+        android:label="@string/title_my_events"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_create_event"
+        android:name="com.example.easy_team_up.CreateEvent"
+        android:label="@string/title_my_events"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

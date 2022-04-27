@@ -1,6 +1,6 @@
 package com.example.easy_team_up;
 
-import static com.example.easy_team_up.DBHelper.getPublicEvents;
+import static com.example.easy_team_up.DBHelper.getEvents;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,16 +25,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MapsFragment extends Fragment {
-    private ArrayList<Event> events;
+    //private ArrayList<Event> events;
     private HashMap<Marker, Event> eventMap;
     private Geocoder geocoder;
-
+    private GoogleMap map;
+    private FirebaseAuth mAuth;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -48,24 +51,34 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            events = getPublicEvents();
+            map = googleMap;
             eventMap = new HashMap<Marker, Event>();
             geocoder = new Geocoder(getContext());
-            // Iterate through events and place marker
-            for(Event event : events){
-                ArrayList<Address> addresses = null;
-                try {
-                    addresses = (ArrayList<Address>) geocoder.getFromLocationName(event.getAddress(), 50);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            mAuth = FirebaseAuth.getInstance();
+            googleMap.clear();
+            getEvents(new GetEventsCallback() {
+                @Override
+                public void onCallback(ArrayList<Event> events) {
+                    for(Event event : events){
+                        if(event.getPublicFlag() && !event.getUserID().equals(mAuth.getCurrentUser().getEmail())){
+                            ArrayList<Address> addresses = null;
+                            try {
+                                addresses = (ArrayList<Address>) geocoder.getFromLocationName(event.getAddress(), 50);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            double longitude = addresses.get(0).getLongitude();
+                            double latitude = addresses.get(0).getLatitude();
+                            LatLng coords = new LatLng(latitude, longitude);
+                            MarkerOptions mo = new MarkerOptions().position(coords);
+                            Marker m = googleMap.addMarker(mo);
+                            eventMap.put(m, event);
+                        }
+                    }
                 }
-                double longitude = addresses.get(0).getLongitude();
-                double latitude = addresses.get(0).getLatitude();
-                LatLng coords = new LatLng(latitude, longitude);
-                MarkerOptions mo = new MarkerOptions().position(coords);
-                Marker m = googleMap.addMarker(mo);
-                eventMap.put(m, event);
-            }
+            });
+            // Iterate through events and place marker
+
 
             googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(34.018360, -118.286331),14.0f) );
             googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -78,7 +91,7 @@ public class MapsFragment extends Fragment {
                     i.putExtra("name", event.getName());
                     i.putExtra("desc", event.getDesc());
                     i.putExtra("address", event.getAddress());
-                    i.putExtra("time", event.getTime().toString());
+                    i.putExtra("time", event.getEventStart());
                     startActivity(i);
                     return true;
 
@@ -87,6 +100,7 @@ public class MapsFragment extends Fragment {
 
         }
     };
+
 
     @Nullable
     @Override
