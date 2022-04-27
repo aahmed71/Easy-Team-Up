@@ -21,6 +21,6 @@ public class EventActivity extends AppCompatActivity {
         timeText.setText(getIntent().getStringExtra("time"));
         TextView descText = (TextView)findViewById(R.id.desc);
         descText.setText(getIntent().getStringExtra("desc"));
-
+        
     }
 }
