@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
                         Cursor cursor = DB.getIdfromUsername(user);
                         cursor.moveToLast();
                         intent.putExtra("userId", cursor.getInt(0));
-         //               intent.putExtra("userName", user);
                         startActivity(intent);
                     }
                     else {
