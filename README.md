@@ -13,20 +13,27 @@ Make sure to run application on an emulator on Android Studio or an android devi
 3. Ask for location for Create Event
 
 4. Input profile photo
-5. Check invitation timestamp
+### Feature 2
+1. Allow users to choose their own time slot for a given a event
 
-6. Added more types of notifications
+2. Determine time for event and notify all participants
 
-7. Event creator edited event
+### Feature 3
+1. Check invitation timestamp (prevent users from accepting overdue invites and editing their events past the sign-up due date.)
 
-8. Rejecting invites
+2. View and manage created events in Manage My Events page
 
-9. User removes their RSVP from event
+3. View and manage invitations and RSVPs in View Invites and RSVPs page
+  - Accept invitations (which adds to a user's list of RSVPs)
+  - Delete invitations
+  - Delete RSVPs
 
-10. Added home page
+4. View and manage notifications in My Notifications page
 
-11. Notify event creator when user signs up for their event
+5. Added notifications such as when:
+  - User accepts an invite (notifies event creator)
+  - User removes their RSVP from event (notifies event creator)
+  - Event creator edits event (notifies RSVPs)
+  - User rejects an invite (notifies event creator)
 
-12. Allow users to choose their own time slot for a given a event
-
-13. Determine time for event and notify all participants
+6. Added home page
