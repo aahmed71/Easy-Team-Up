@@ -24,16 +24,16 @@ Make sure to run application on an emulator on Android Studio or an android devi
 2. View and manage created events in Manage My Events page
 
 3. View and manage invitations and RSVPs in View Invites and RSVPs page
-  - Accept invitations (which adds to a user's list of RSVPs)
-  - Delete invitations
-  - Delete RSVPs
+    - Accept invitations (which adds to a user's list of RSVPs)
+    - Delete invitations
+    - Delete RSVPs
 
 4. View and manage notifications in My Notifications page
 
 5. Added notifications such as when:
-  - User accepts an invite (notifies event creator)
-  - User removes their RSVP from event (notifies event creator)
-  - Event creator edits event (notifies RSVPs)
-  - User rejects an invite (notifies event creator)
+    - User accepts an invite (notifies event creator)
+    - User removes their RSVP from event (notifies event creator)
+    - Event creator edits event (notifies RSVPs)
+    - User rejects an invite (notifies event creator)
 
 6. Added home page
