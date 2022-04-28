@@ -5,9 +5,14 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -20,32 +25,66 @@ public class EventAdapter extends RecyclerView.Adapter<EventVH>{
     DBHelper DB;
     Context c;
     Integer userId;
-    Timestamp currTime;
-//    LocalDate currentdate = LocalDate.now();
-//    int currentDay = currentdate.getDayOfMonth();
-//    Month currentMonth = currentdate.getMonth();
-//    int currentYear = currentdate.getYear();
+    Button edit;
+    View view;
     public EventAdapter(List<Event> events, DBHelper DB, Context c, Integer userId){
         this.events = events;
         this.DB = DB;
         this.c = c;
         this.userId = userId;
-        currTime = new Timestamp(System.currentTimeMillis());
     }
     @NonNull
     @Override
     public EventVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.myeventitem, parent, false);
+         edit = (Button) view.findViewById(R.id.editEvent);
         return new EventVH(view).linkAdapter(this);
     }
 
+    public String monthToNumber(String month){
+        String [] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Nov",
+        "Dec"};
+        int idx = java.util.Arrays.asList(months).indexOf(month) + 1;
+        if(idx < 10){
+            return "0" + Integer.toString(idx);
+        }
+        else return Integer.toString(idx);
+    }
     @Override
     public void onBindViewHolder(@NonNull EventVH holder, int position) {
         int eventId = events.get(position).eventId;
         Cursor res = DB.getEventById(eventId);
         res.moveToFirst();
         holder.textView.setText(res.getString(2));
+        //hide edit event button if past due time
+        //get due time
+        System.out.println("Result: " + res);
+        String year = Integer.toString(res.getInt(11));
+        String month = monthToNumber(res.getString(9));
+        Integer numDate = res.getInt(10);
+        String date;
+        if(numDate >= 1 && numDate <= 9){
+            date = "0" + Integer.toString(numDate);
+        }
+        else date = Integer.toString(numDate);
+        Integer numTime = res.getInt(12);
+        String time;
+        if(numTime < 10){
+            time = "0" + Integer.toString(res.getInt(12));
+        }
+        else time = Integer.toString(res.getInt(12));
+        String str = year + "-" + month + '-' + date + ' ' + time;
+        System.out.println("event string: " + str);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+        LocalDateTime now = LocalDateTime.now();
+        // if past edit due date, hide edit button
+        if(now.isAfter(dateTime)){
+            edit.setVisibility(view.GONE);
+        }
     }
 
     @Override
@@ -85,10 +124,6 @@ class EventVH extends RecyclerView.ViewHolder{
         });
         //go to update event page
         itemView.findViewById(R.id.editEvent).setOnClickListener(view -> {
-//            //call database and edit event by event id
-//            adapter.DB.updateMyEvent(adapter.events.get(getAdapterPosition()).eventId, "New Event");
-//            adapter.events.remove(getAdapterPosition());
-//            adapter.notifyItemRemoved(getAdapterPosition());
             //go to edit event page, start another activity
             editEvent();
         });

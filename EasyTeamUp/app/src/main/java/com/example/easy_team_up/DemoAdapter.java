@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
@@ -32,11 +35,11 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoVH>{
     @Override
     public void onBindViewHolder(@NonNull DemoVH holder, int position) {
         Integer eventId = invites.get(position).eventId;
-        Cursor event = DB.getEventById(eventId);
-        if(event.getCount() > 0) {
-            event.moveToFirst();
-            System.out.println("Event name: " + event.getString(2));
-            holder.textView.setText(event.getString(2));
+        Cursor res = DB.getEventById(eventId);
+        if(res.getCount() > 0) {
+            res.moveToFirst();
+            System.out.println("Event name: " + res.getString(2));
+            holder.textView.setText(res.getString(2));
         }
     }
 

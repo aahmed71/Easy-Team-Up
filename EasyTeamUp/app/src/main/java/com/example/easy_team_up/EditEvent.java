@@ -54,21 +54,21 @@ public class EditEvent extends AppCompatActivity {
         eventName = eventInfo.getString(2);
         System.out.println("event name: " + eventInfo.getString(2));
         EditText editName = (EditText) findViewById(R.id.eventName);
-        editName.setHint("Event Name: " + eventName);
+        editName.setHint(eventName);
 
         eventType = eventInfo.getString(3);
         EditText editType = (EditText) findViewById(R.id.eventType);
-        if(eventType != null) editType.setHint("Event Type: " + eventType);
+        if(eventType != null) editType.setHint(eventType);
 
         eventLocation = eventInfo.getString(15);
         System.out.println("event location: " + eventLocation);
         EditText editLocation = (EditText) findViewById(R.id.location);
-        if(eventLocation != null) editLocation.setHint("Event Location: " + eventLocation);
+        if(eventLocation != null) editLocation.setHint(eventLocation);
 
         eventDescription = eventInfo.getString(14);
         System.out.println("event description: " + eventDescription);
         EditText editDescription = (EditText) findViewById(R.id.eventDescription);
-        if(eventDescription != null) editLocation.setHint("Event description: " + eventDescription);
+        if(eventDescription != null) editLocation.setHint(eventDescription);
 
         Spinner monthSpinner = findViewById(R.id.month);
         ArrayList<String> arrayList = new ArrayList<>();
