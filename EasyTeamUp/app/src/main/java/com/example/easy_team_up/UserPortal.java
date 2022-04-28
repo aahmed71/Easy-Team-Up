@@ -3,9 +3,11 @@ package com.example.easy_team_up;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class UserPortal extends AppCompatActivity {
     Button viewNotifications;
@@ -18,11 +20,15 @@ public class UserPortal extends AppCompatActivity {
     Button logOut;
     Integer userId;
     String userName;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         userId = getIntent().getIntExtra("userId", -1);
-        userName = getIntent().getStringExtra("userName");
+        db = new DBHelper(this);
+        Cursor res = db.getNameFromUserId(userId);
+        res.moveToFirst();
+        userName = res.getString(1);
         System.out.println("current userid in user portal: " + userId);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_portal);
@@ -32,6 +38,8 @@ public class UserPortal extends AppCompatActivity {
                 logOutUser();
             }
         });
+        TextView title = findViewById(R.id.portal);
+        title.setText("Welcome " + userName + "!");
 
         viewEditProfile = findViewById(R.id.viewEditProfileButton);
         viewEditProfile.setOnClickListener(new View.OnClickListener(){
