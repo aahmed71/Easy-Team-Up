@@ -6,6 +6,7 @@ Easy-Team-Up brings together communities by allowing users to create, attend, an
 Make sure to run application on an emulator on Android Studio or an android device with Google play services.
 
 ## Features Added:
+### Feature 2
 1. Save the edited profile to the database
 
 2. Display the updated profile information
