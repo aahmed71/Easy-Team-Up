@@ -19,6 +19,8 @@ Make sure to run application on an emulator on Android Studio or an android devi
 
 2. Determine time for event and notify all participants
 
+3. Added notifications when user accepts an invite (notifies event creator)
+
 ### Feature 3
 1. Check invitation timestamp (prevent users from accepting overdue invites and editing their events past the sign-up due date.)
 
