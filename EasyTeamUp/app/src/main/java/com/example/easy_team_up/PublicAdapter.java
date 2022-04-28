@@ -63,7 +63,9 @@ class PublicVH extends RecyclerView.ViewHolder{
         itemView.findViewById(R.id.accept).setOnClickListener(view -> {
             //call database and delete
             System.out.print("hi accept");
-            adapter.DB.addEventToRSVP(adapter.invites.get(getAdapterPosition()));
+            Event2 event = adapter.invites.get(getAdapterPosition());
+            adapter.DB.addEventToRSVP(event);
+            adapter.DB.insertNotification("User signed up for your event.",  event.getUserID());
             view.setVisibility(View.INVISIBLE);
         });
     }
