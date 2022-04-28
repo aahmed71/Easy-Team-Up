@@ -60,6 +60,30 @@
             android:text="Description"
             android:textSize="20sp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTime3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="time"
+                android:hint="Start Time"/>
+
+            <EditText
+                android:id="@+id/editTextTime4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="time"
+                android:hint="End Time"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/accept"
             android:layout_width="wrap_content"
