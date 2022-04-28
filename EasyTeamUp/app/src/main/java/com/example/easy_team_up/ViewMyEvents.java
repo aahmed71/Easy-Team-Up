@@ -29,17 +29,12 @@ public class ViewMyEvents extends AppCompatActivity {
 
         //try id that doesnt exist
         Cursor res = DB.getMyEvents(userId);
-//        if(res.getCount()==0){
-//            Toast.makeText(InvitationActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
         while(res.moveToNext()){
             //id title userid place: event class: id user title
             Event event = new Event(res.getInt(0), res.getInt(2), res.getString(1));
             events.add(event);
         }
         //end snippet
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         EventAdapter adapter = new EventAdapter(events, DB, this, userId);

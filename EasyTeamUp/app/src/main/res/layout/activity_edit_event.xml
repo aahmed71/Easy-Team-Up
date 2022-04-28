@@ -16,62 +16,112 @@
         android:text="Edit Event"
         android:textSize="32dp" />
 
-    <EditText
-        android:id="@+id/eventName"
+    <LinearLayout
+        android:id="@+id/eventNameWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/title"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="Event Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/eventType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Event Type: "
         android:layout_centerInParent="true"
-        android:layout_below="@id/eventName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/eventType"
-        android:ems="10"
-        android:hint="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/eventDescription"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/location"
-        android:layout_centerInParent="true"
-        android:gravity="top|start"
-        android:hint="Event Description"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:maxLines="10"
-        android:minLines="6"
-        android:scrollbars="vertical" />
+        android:layout_marginTop="10sp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Event Name:"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ems="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.184"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/eventTypeWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventNameWrapper"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Event Type:"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/eventType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_centerInParent="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.184"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/locationWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventTypeWrapper"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Location:"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ems="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.184"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/descriptionWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationWrapper"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10sp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:text="Event Description:"
+        android:textSize="18dp" />
+        <EditText
+            android:id="@+id/eventDescription"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:scrollbars="vertical" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/privateEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventDescription"
+        android:layout_below="@id/descriptionWrapper"
         android:layout_centerInParent="true"
         android:layout_marginTop="10sp">
 

@@ -3,6 +3,9 @@ package com.example.easy_team_up;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -18,6 +21,17 @@ public class InvitationActivity extends AppCompatActivity{
     Button switchView;
     Button userPortal;
     Integer userId;
+    public String monthToNumber(String month){
+        String [] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Nov",
+                "Dec"};
+        int idx = java.util.Arrays.asList(months).indexOf(month) + 1;
+        System.out.println("idx: "+ idx);
+        if(idx < 10){
+            return "0" + Integer.toString(idx);
+        }
+        else return Integer.toString(idx);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +41,43 @@ public class InvitationActivity extends AppCompatActivity{
         DB = new DBHelper(this);
         List<Invite> invites = new LinkedList<>();
         //want grab from database here: need to pass in the userid
-        Cursor res = DB.getInvitations(userId);
-        while(res.moveToNext()){
-            //invite user event ids
-            Invite invite = new Invite(res.getInt(0), res.getInt(1), res.getInt(2));
+        Cursor invite_res = DB.getInvitations(userId);
+        while(invite_res.moveToNext()){
+            int eventId = invite_res.getInt(1);
+            Cursor res = DB.getEventById(eventId);
+            res.moveToFirst();
+            //only add to invites if sign up due date is after now
+            String year = Integer.toString(res.getInt(11));
+            String month = monthToNumber(res.getString(9));
+            Integer numDate = res.getInt(10);
+            String date;
+            if(numDate >= 1 && numDate <= 9){
+                date = "0" + Integer.toString(numDate);
+            }
+            else date = Integer.toString(numDate);
+            Integer numTime = res.getInt(12);
+            String time;
+            if(numTime < 10){
+                time = "0" + Integer.toString(res.getInt(12));
+            }
+            else time = Integer.toString(res.getInt(12));
+            String str = year + "-" + month + '-' + date + ' ' + time;
+            System.out.println("event string: " + str);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+            LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
-            invites.add(invite);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+            LocalDateTime now = LocalDateTime.now();
+            // if past edit due date, delete event
+            Invite invite = new Invite(invite_res.getInt(0), invite_res.getInt(1), invite_res.getInt(2));
+            if(now.isBefore(dateTime)) {
+                //invite user event ids
+                invites.add(invite);
+            }
+            else{
+                //delete invite
+                DB.deleteInvitation(invite);
+            }
         }
         System.out.println( invites.size());
         //end snippet
